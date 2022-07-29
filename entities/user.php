@@ -12,7 +12,7 @@ class User
     public $city;
     public $state;
     public $zip;
-    public $admin = false;
+    public $password;
 
     /**
      * user constructor.
@@ -22,8 +22,9 @@ class User
      * @param $city
      * @param $state
      * @param $zip
+     * @param $password
      */
-    public function __construct($name, $email, $street, $city, $state, $zip)
+    public function __construct($name, $email, $street, $city, $state, $zip, $password)
     {
         $this->name = $name;
         $this->email = $email;
@@ -31,6 +32,7 @@ class User
         $this->city = $city;
         $this->state = $state;
         $this->zip = $zip;
+        $this->password = $password;
     }
 
     /**
@@ -120,6 +122,7 @@ class User
     {
         $this->state = $state;
     }
+
     /**
      * @return mixed
      */
@@ -134,6 +137,23 @@ class User
     {
         $this->zip = $zip;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * @param mixed $password
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+    }
+    public $admin = false;
 
     /**
      * @return boolean

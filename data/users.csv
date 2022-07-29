@@ -1,0 +1,4 @@
+1, 'root', 'root@localhost', 'User Program #67', 'Tron', 'MCP', '00000', 'root', true
+2, 'Johny Appleseed', 'appleseed@orchard.com', '34 Granny Apple Lane', 'Osaka', 'WI', '55555', 'password', false
+3, 'Mary Jane', 'mj@dailybugle.com', '123 Somewhere Place #45', 'Metropolis', 'MO', '56789', 'password',  false
+4, 'admin', 'admin@localhost', 'Data Bank 562-102', 'Tron', 'MCP', '00000', 'admin', true
