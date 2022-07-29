@@ -3,7 +3,7 @@
 // NKU - CSC299 - Summer 2022
 // Class file for the product object
 
-class product
+class Product
 {
     public $id;
     public $name;

@@ -3,7 +3,7 @@
 // NKU - CSC299 - Summer 2022
 // Class file for the user object
 
-class user
+class User
 {
     public $id;
     public $name;
@@ -13,6 +13,25 @@ class user
     public $state;
     public $zip;
     public $admin = false;
+
+    /**
+     * user constructor.
+     * @param $name
+     * @param $email
+     * @param $street
+     * @param $city
+     * @param $state
+     * @param $zip
+     */
+    public function __construct($name, $email, $street, $city, $state, $zip)
+    {
+        $this->name = $name;
+        $this->email = $email;
+        $this->street = $street;
+        $this->city = $city;
+        $this->state = $state;
+        $this->zip = $zip;
+    }
 
     /**
      * @return mixed
@@ -36,6 +55,22 @@ class user
     public function setName($name)
     {
         $this->name = $name;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param mixed $email
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
     }
 
     /**
@@ -85,7 +120,6 @@ class user
     {
         $this->state = $state;
     }
-
     /**
      * @return mixed
      */
@@ -102,18 +136,27 @@ class user
     }
 
     /**
-     * @return mixed
+     * @return boolean
      */
-    public function getEmail()
+    public function isAdmin()
     {
-        return $this->email;
+        return $this->admin;
     }
 
     /**
-     * @param mixed $email
+     * @param boolean
      */
-    public function setEmail($email)
+    public function setAdmin($admin = false)
     {
-        $this->email = $email;
+        $this->admin = $admin;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOrders()
+    {
+        //TODO: Update to return orders once implemented
+        return null;
     }
 }

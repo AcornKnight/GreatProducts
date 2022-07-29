@@ -3,7 +3,7 @@
 // NKU - CSC299 - Summer 2022
 // Class file for the category object
 
-class category
+class Category
 {
     public $id;
     public $name;
