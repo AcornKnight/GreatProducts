@@ -3,7 +3,7 @@
 
 // Connection info
 $host='127.0.0.1';
-$dbname='greatproducts';
+$dbname='GreatProducts';
 $username='root';
 $password='';
 $charset='utf8mb4';
@@ -28,7 +28,7 @@ $charset='utf8mb4';
 
 //$error_log =  "/data/" . PHP_VERSION . "/";
 
-$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+$dsn = "mysql:host=$host;dbname=$dbname;charset=$charset";
 
 
 $options=[
