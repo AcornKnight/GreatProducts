@@ -1,6 +1,5 @@
 <?php
-require_once('GreatProducts/settings.php');
-require_once('GreatProducts/lib/mysql.php');
+require_once('settings.php');
 
 print_r($_GET);
 $prod_id = $_GET['ProductID'];

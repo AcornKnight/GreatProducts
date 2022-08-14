@@ -1,6 +1,5 @@
 <?php
-require_once('GreatProducts/settings.php');
-require_once('GreatProducts/lib/mysql.php');
+require_once('settings.php');
 
 if($user) {
     echo 'Hello '.$user['Username'];
