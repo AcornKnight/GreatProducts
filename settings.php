@@ -4,8 +4,8 @@
 // Connection info
 $host='127.0.0.1';
 $dbname='greatproducts';
-$user='root';
-$pass='';
+$username='root';
+$password='';
 $charset='utf8mb4';
 
 
@@ -37,5 +37,5 @@ $options=[
 	PDO::ATTR_EMULATE_PREPARES=>false,
 ];
 
-$db = new PDO('mysql:host='.$host.';dbname='.$dbname.';charset='.$charset,$user,$pass,$options);
+$db = new PDO('mysql:host='.$host.';dbname='.$dbname.';charset='.$charset,$username,$password,$options);
 ?>
