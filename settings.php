@@ -38,4 +38,5 @@ $options=[
 ];
 
 $db = new PDO('mysql:host='.$host.';dbname='.$dbname.';charset='.$charset,$username,$password,$options);
+$user = null;
 ?>
