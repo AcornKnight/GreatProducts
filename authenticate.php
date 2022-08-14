@@ -1,6 +1,6 @@
 <?php
 require_once('settings.php');
-require_once('lib/mysql.php');
+
 
 
 $con = mysqli_connect($host, $user, $pass, $dbname);
