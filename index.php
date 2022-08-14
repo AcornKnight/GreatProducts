@@ -6,13 +6,7 @@ if($user) {
     echo '<a href="profile.php">Profile</a>';
     echo '<a href="logout.php">Logout</a>';
 } else {
-    echo '<form action="/login.php">
-      <label for="userid">User ID:</label>
-      <input type="text" id="userid" name="userid"><br><br>
-      <label for="passwd">Password:</label>
-      <input type="text" id="passwd" name="passwd"><br><br>
-      <input type="submit" value="Login">
-    </form>';
+    echo '<a href="login.php">Login</a>';
 }
 
 // READ ALL
