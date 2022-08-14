@@ -1,8 +1,8 @@
 <?php
 $host='127.0.0.1';
-$dbname='greatproducts';
-$user='root';
-$pass='';
+$dbname='great_products';
+$username='root';
+$password='';
 $charset='utf8mb4';
 
 
