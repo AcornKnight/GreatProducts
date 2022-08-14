@@ -18,6 +18,7 @@ while($row=$result->fetch()){
 			<td><a href="delete.php?index='.$row['ID'].'">Delete quote</a></td>
 		</tr>';
 }
+<<<<<<< HEAD
 =======
 <?php
 require_once('GreatProducts/settings.php');
@@ -51,3 +52,8 @@ while($row=$products->fetch()){
 }
 >>>>>>> Stashed changes
 echo '</table >';
+=======
+echo '</table >';
+
+?>
+>>>>>>> eaa2dfaa695e9a7f7e9a19d0cbecdccd2b9ceb45
