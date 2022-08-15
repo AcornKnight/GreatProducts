@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `address` (
-  `AddressID` int(255) NOT NULL,
+  `AddressID` int(255) AUTO_INCREMENT PRIMARY KEY,
   `UserID` int(255) NOT NULL,
   `Street` varchar(255) NOT NULL,
   `City` varchar(255) NOT NULL,
@@ -202,10 +202,7 @@ INSERT INTO `user` (`UserID`, `Admin`, `Username`, `Userpass`, `Email`) VALUES
 --
 -- Indexes for table `address`
 --
-ALTER TABLE `address`
-  ADD PRIMARY KEY (`AddressID`),
-  ADD UNIQUE KEY `AddressID` (`AddressID`,`UserID`),
-  ADD KEY `UserID` (`UserID`);
+
 
 --
 -- Indexes for table `category`
