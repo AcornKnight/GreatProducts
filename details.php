@@ -10,7 +10,7 @@ if($prod_id) {
     echo '<h3>'.$product["Name"].'</h3>';
     echo '<hr /><p>'.$product["Details"].'</p>';
     echo '<hr /><h3>'.$product["Cost"].'</h3>';
-    if($user) {
+    if(isset($_SESSION['id'])) {
         echo'<form action="add2cart.php?ProductID='.$prod_id.'">'.
             '<input type="submit" value="Add to Cart">'.
         '</form>';
