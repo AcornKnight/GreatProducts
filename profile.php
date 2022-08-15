@@ -64,7 +64,7 @@ require_once('settings.php');
 			</div>
             <div>
                 <h3>Addresses:</h3>
-                <a href="address.php?action=add'">ADD NEW ADDRESS</a>
+                <a href="address.php?action=create">ADD NEW ADDRESS</a>
                 <table>
                     <?php
                         while($address=$addresses->fetch()) {
