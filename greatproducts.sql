@@ -179,7 +179,7 @@ INSERT INTO `products` (`ProductID`, `Name`, `Cost`, `Details`, `Count`) VALUES
 
 CREATE TABLE `user` (
   `UserID` int(255) NOT NULL,
-  `AdminID` tinyint(1) NOT NULL,
+  `Admin` tinyint(1) NOT NULL,
   `Username` varchar(32) NOT NULL,
   `Userpass` varchar(32) DEFAULT NULL,
   `Email` varchar(32) DEFAULT NULL
@@ -189,7 +189,7 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`UserID`, `AdminID`, `Username`, `Userpass`, `Email`) VALUES
+INSERT INTO `user` (`UserID`, `Admin`, `Username`, `Userpass`, `Email`) VALUES
 (2, 0, 'sysUser', NULL, NULL),
 (3, 1, 'ngestiehr', 'pass', 'gestiehrn1@nku.edu'),
 (5, 1, 'Kenneth Welch', 'hi', 'Kwelch@nku.edu'),
@@ -249,8 +249,8 @@ ALTER TABLE `products`
 --
 ALTER TABLE `user`
   ADD UNIQUE KEY `UserID` (`UserID`),
-  ADD UNIQUE KEY `UserID_2` (`UserID`,`AdminID`),
-  ADD KEY `UserID_3` (`UserID`,`AdminID`);
+  ADD UNIQUE KEY `UserID_2` (`UserID`,`Admin`),
+  ADD KEY `UserID_3` (`UserID`,`Admin`);
 
 --
 -- AUTO_INCREMENT for dumped tables
