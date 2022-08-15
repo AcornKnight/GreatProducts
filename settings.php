@@ -1,6 +1,6 @@
 <?php
 
-
+global $host, $username, $password, $dbname;
 // Connection info
 $host='127.0.0.1';
 $dbname='GreatProducts';
@@ -38,9 +38,10 @@ $options=[
 ];
 
 $db = new PDO('mysql:host='.$host.';dbname='.$dbname.';charset='.$charset,$username,$password,$options);
-//$GLOBALS['user'] = null;
+
 global $user;
 $user = null;
+// We need to use sessions, so you should always start sessions using the below code.
 session_start();
 
 ?>
