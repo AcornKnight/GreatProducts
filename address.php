@@ -12,7 +12,13 @@
 
 <?php
 require_once('settings.php');
-
+echo '<hr/>GET';
+print_r($_GET);
+echo '<hr/>POST';
+print_r($_POST);
+echo '<hr/>IMPLODE';
+print_r(implode(',', $_POST));
+echo '<hr/>';
 if(isset($_GET['action'])) {
 // Incoming action from the profile page
     if ($_GET['action'] == "delete") {
@@ -25,7 +31,7 @@ if(isset($_GET['action'])) {
         $address = $address->fetch();
 
         echo '<div class="address">';
-        echo '<form action="address.php" mehod="post" class="AddressForm">'.
+        echo '<form action="address.php" method="post" class="AddressForm">'.
             '<input type="hidden" name="AddressID" placeholder="AddressID" id="AddressID" value="'. $_GET['AddressID'] .'" required>'.
             '<label>Street<label/>'.
             '<input type="text" name="Street" placeholder="Street" id="Street" required value="'.$address["Street"].'">'.
@@ -58,15 +64,33 @@ if(isset($_GET['action'])) {
         echo '<a href="profile.php" class="cancel">Cancel</a></div>';
     } else {
         // unknown GET action
-        header('Location: profile.php');
+//        header('Location: profile.php');
     }
-} else if(isset($_POST['action'])) {
-// Incoming action from one of our forms
-// if $_POST['AddressID'] we have an update, otherwise it is a create action
-
+} else if(isset($_POST['AddressID']) && isset($_POST['Street']) && isset($_POST['City']) && isset($_POST['State']) && isset($_POST['Zip']) && isset($_POST['Country'])) {
+// Incoming update action from our form
+    global $db;
+//    $db->execute('UPDATE Address SET ("Street", "City", "State", "Zip", "Country") VALUES ('.
+//        $_POST['Street'].','.
+//        $_POST['City'].','.
+//        $_POST['State'].','.
+//        $_POST['Zip'].','.
+//        $_POST['Country'].','.
+//        ') WHERE AddressID='.$_POST['AddressID']);
+//    $db->commit();
+    $db->exec('UPDATE address (`UserID`,`AddressID`,`Street`, `City`, `State`, `Zip`, `Country`) VALUES ("'.$_SESSION['id'].'","' .implode('","', $_POST).'") WHERE AddressID = '.$_POST['AddressID']);
+} else if(isset($_POST['Street']) && isset($_POST['City']) && isset($_POST['State']) && isset($_POST['Zip']) && isset($_POST['Country'])) {
+// Incoming create action from our form
+    global $db;
+//    $db->exec('INSERT INTO address (`Street`, `City`, `State`, `Zip`, `Country`) VALUES ('.
+//        '`'.$_POST['Street'].'`,`'.
+//        $_POST['City'].'`,`'.
+//        $_POST['State'].'`,`'.
+//        $_POST['Zip'].'`,`'.
+//        $_POST['Country'].'`)');
+    $db->exec('INSERT INTO address (`UserID`,`Street`, `City`, `State`, `Zip`, `Country`) VALUES ("'.$_SESSION['id'].'","' .implode('","', $_POST).'")');
 } else {
     // nothing to do, sending back to profile screen
-    header('Location: profile.php');
+//    header('Location: profile.php');
 }
 ?>
 </body>
