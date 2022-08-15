@@ -37,6 +37,7 @@ $options=[
 	PDO::ATTR_EMULATE_PREPARES=>false,
 ];
 
+global $db;
 $db = new PDO('mysql:host='.$host.';dbname='.$dbname.';charset='.$charset,$username,$password,$options);
 
 global $user;

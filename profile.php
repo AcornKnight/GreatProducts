@@ -20,6 +20,11 @@ require_once('settings.php');
     $stmt->bind_result($userpass, $Email);
     $stmt->fetch();
     $stmt->close();
+
+    $addresses = $db->query('SELECT * FROM Address WHERE UserID='.$_SESSION['id']);
+//    $addresses = $addresses->fetch();
+    $orders = $db->query('SELECT * FROM Invoice WHERE UserID='.$_SESSION['id']);
+//    $orders = $orders->fetch();
 ?>
 
 <!DOCTYPE html>
@@ -57,6 +62,40 @@ require_once('settings.php');
 					</tr>
 				</table>
 			</div>
+            <div>
+                <h3>Addresses:</h3>
+                <a href="address.php?action=add'">ADD NEW ADDRESS</a>
+                <table>
+                    <?php
+                        while($address=$addresses->fetch()) {
+                            echo '<tr>';
+                                echo '<td>'.$address['Street'].'</td>';
+                                echo '<td>'.$address['City'].'</td>';
+                                echo '<td>'.$address['State'].'</td>';
+                                echo '<td>'.$address['Zip'].'</td>';
+                                echo '<td>'.$address['Country'].'</td>';
+                                echo '<td><a href="address.php?action=update&AddressID='.$address['AddressID'].'">UPDATE</a></td>';
+                                echo '<td><a href="address.php?action=delete&AddressID='.$address['AddressID'].'">DELETE</a></td>';
+                            echo '</tr>';
+                        }
+                    ?>
+                </table>
+            </div>
+            <div>
+                <h3>Orders:</h3>
+                <table>
+                    <?php
+                        while($order=$orders->fetch()) {
+                            echo '<tr>';
+                                echo '<td>';
+                                    echo '<td>'.$order['OrderID'].'</td>';
+                                    echo '<td>'.$order['Status'].'</td>';
+                                echo '</td>';
+                            echo '</tr>';
+                        }
+                    ?>
+                </table>
+            </div>
 		</div>
 	</body>
 </html>
