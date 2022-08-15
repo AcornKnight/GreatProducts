@@ -126,3 +126,31 @@ body.loggedin {
 	padding: 5px;
 	margin: 0 0 10px 0;
 }
+
+.address form {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	padding-top: 20px;
+	width: 500px;
+}
+
+.address label {
+	color: white;
+	width: 130px;
+}
+.address input {
+	width: 300px;
+}
+
+.cancel {
+	color: red;
+}
+.create {
+	background-color: darkgreen;
+	color: orange;
+}
+.update {
+	background-color: darkgreen;
+	color: orange;
+}
