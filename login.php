@@ -20,7 +20,7 @@
 				<label for="password">
 					<i class="fas fa-lock"></i>
 				</label>
-				<input type="password" name="password" placeholder="Password" id="password" required>
+				<input type="password" name="userpass" placeholder="Password" id="userpass" required>
 				<input type="submit" value="Login">
 			</form>
 		</div>

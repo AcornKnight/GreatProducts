@@ -3,13 +3,12 @@ require_once('settings.php');
 
 // "By Category" Can be manually driven until wired up in the interface with:
 // http://localhost/GreatProducts/index.php?CategoryID=1
-
-if($user) {
-    echo 'Hello '.$user['Username'];
-    echo '<a href="profile.php">Profile</a>';
-    echo '<a href="logout.php">Logout</a>';
+if(isset($_SESSION['name'])) {
+    echo 'Hello '.$_SESSION['name'].'<br/>';
+    echo '<a href="profile.php?UserID='.$_SESSION['id'].'">Profile</a><br/>';
+    echo '<a href="logout.php">Logout</a><br/>';
 } else {
-    echo '<a href="login.php">Login</a>';
+    echo '<a href="login.php">Login</a><br/>';
 }
 echo '<hr />';
 $selStatement = 'SELECT * FROM products';
