@@ -12,6 +12,16 @@
 
 <?php
 require_once('settings.php');
+function mapped_implode($glue, $array, $symbol = '=') {
+    return implode($glue, array_map(
+            function($k, $v) use($symbol) {
+                return $k . $symbol . $v;
+            },
+            array_keys($array),
+            array_values($array)
+        )
+    );
+}
 echo '<hr/>GET';
 print_r($_GET);
 echo '<hr/>POST';
@@ -64,33 +74,23 @@ if(isset($_GET['action'])) {
         echo '<a href="profile.php" class="cancel">Cancel</a></div>';
     } else {
         // unknown GET action
-//        header('Location: profile.php');
+        header('Location: profile.php');
     }
 } else if(isset($_POST['AddressID']) && isset($_POST['Street']) && isset($_POST['City']) && isset($_POST['State']) && isset($_POST['Zip']) && isset($_POST['Country'])) {
-// Incoming update action from our form
+    // Incoming update action from our form
     global $db;
-//    $db->execute('UPDATE Address SET ("Street", "City", "State", "Zip", "Country") VALUES ('.
-//        $_POST['Street'].','.
-//        $_POST['City'].','.
-//        $_POST['State'].','.
-//        $_POST['Zip'].','.
-//        $_POST['Country'].','.
-//        ') WHERE AddressID='.$_POST['AddressID']);
-//    $db->commit();
-    $db->exec('UPDATE address (`UserID`,`AddressID`,`Street`, `City`, `State`, `Zip`, `Country`) VALUES ("'.$_SESSION['id'].'","' .implode('","', $_POST).'") WHERE AddressID = '.$_POST['AddressID']);
+    // the quotes are correct in the UPDATE SQL below. it wants:  ... SET key1="value1", key2="value2" WHERE ...
+    // it throws a hissy (syntax error) when keys are quoted. It pukes on spaces in values when values are not quoted
+    $db->exec('UPDATE address SET '. mapped_implode('",', $_POST, '="').'" WHERE AddressID = '.$_POST['AddressID']);
+    header('Location: profile.php');
 } else if(isset($_POST['Street']) && isset($_POST['City']) && isset($_POST['State']) && isset($_POST['Zip']) && isset($_POST['Country'])) {
-// Incoming create action from our form
+    // Incoming create action from our form
     global $db;
-//    $db->exec('INSERT INTO address (`Street`, `City`, `State`, `Zip`, `Country`) VALUES ('.
-//        '`'.$_POST['Street'].'`,`'.
-//        $_POST['City'].'`,`'.
-//        $_POST['State'].'`,`'.
-//        $_POST['Zip'].'`,`'.
-//        $_POST['Country'].'`)');
     $db->exec('INSERT INTO address (`UserID`,`Street`, `City`, `State`, `Zip`, `Country`) VALUES ("'.$_SESSION['id'].'","' .implode('","', $_POST).'")');
+    header('Location: profile.php');
 } else {
     // nothing to do, sending back to profile screen
-//    header('Location: profile.php');
+    header('Location: profile.php');
 }
 ?>
 </body>
