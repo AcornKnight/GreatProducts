@@ -39,6 +39,12 @@ require_once('settings.php');
 		<nav class="navtop">
 			<div>
 				<h1>Great Products</h1>
+        <a href="index.php"><i class="fas fa-archive"></i>Main</a>
+        <?php
+          if(isset($_SESSION['isAdmin']) && $_SESSION['isAdmin'] == 1) {
+            echo '<a href="admin.php"><i class="fas fa-ad"></i>Admin</a>';
+          }
+         ?>
 				<a href="profile.php"><i class="fas fa-user-circle"></i>Profile</a>
 				<a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
 			</div>

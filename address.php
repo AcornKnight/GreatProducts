@@ -4,12 +4,19 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Login</title>
+    <title>Address</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
     <link href="style.css" rel="stylesheet" type="text/css">
 </head>
-<body>
-
+<body class="loggedin">
+  <nav class="navtop">
+    <div>
+      <h1>Great Products</h1>
+      <a href="index.php"><i class="fas fa-archive"></i>Main</a>
+      <a href="profile.php"><i class="fas fa-user-circle"></i>Profile</a>
+      <a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
+    </div>
+  </nav>
 <?php
 require_once('settings.php');
 function mapped_implode($glue, $array, $symbol = '=') {

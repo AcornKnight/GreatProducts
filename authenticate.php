@@ -11,7 +11,7 @@ if ( mysqli_connect_errno() ) {
 }
 
 // Now we check if the data from the login form was submitted, isset() will check if the data exists.
-print_r($_POST);
+
 echo '<hr />';
 if ( !isset($_POST['username'], $_POST['userpass']) ) {
 	// Could not get the data that should have been sent.
@@ -19,21 +19,21 @@ if ( !isset($_POST['username'], $_POST['userpass']) ) {
 }
 
 // Prepare our SQL, preparing the SQL statement will prevent SQL injection.
-if ($stmt = $con->prepare('SELECT UserID, userpass FROM user WHERE username = ?')) {
+if ($stmt = $con->prepare('SELECT UserID, userpass, Admin FROM user WHERE username = ?')) {
 	// Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
 	$stmt->bind_param('s', $_POST['username']);
-	print_r($stmt);
+
 	echo '<hr />';
 	$stmt->execute();
 	// Store the result so we can check if the account exists in the database.
 	$stmt->store_result();
-	print_r($stmt);
+
 	echo '<hr />';
 //	$stmt->close();
 }
 
 if ($stmt->num_rows > 0) {
-	$stmt->bind_result($UserID, $userpass);
+	$stmt->bind_result($UserID, $userpass, $isAdmin);
 	$stmt->fetch();
 	// Account exists, now we verify the password.
 	// Note: remember to use password_hash in your registration file to store the hashed passwords.
@@ -46,12 +46,13 @@ if ($stmt->num_rows > 0) {
 		$GLOBALS['_SESSION']['id'] = $UserID;
 		echo 'PRE';
 		global $user;
-		print_r($user);
+
 		$user = $db->query('SELECT * FROM user WHERE UserID = '. $UserID );
-		$GLOBALS['_SESSION']['isAdmin'] = $user['admin'];
+
 		$GLOBALS['user'] = $user->fetch();
+		$GLOBALS['_SESSION']['isAdmin'] = $isAdmin;
 		echo 'POST';
-		print_r($user);
+
 		header('Location: index.php');
 	} else {
 		// Incorrect password
