@@ -48,6 +48,7 @@ if ($stmt->num_rows > 0) {
 		global $user;
 		print_r($user);
 		$user = $db->query('SELECT * FROM user WHERE UserID = '. $UserID );
+		$GLOBALS['_SESSION']['isAdmin'] = $user['admin'];
 		$GLOBALS['user'] = $user->fetch();
 		echo 'POST';
 		print_r($user);
