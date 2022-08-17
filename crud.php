@@ -85,7 +85,7 @@ if(isset($_GET['action'])) {
 } else if(isset($_POST['Admin']) && isset($_POST['Username']) && isset($_POST['Userpass']) && isset($_POST['Email'])) {
     // Incoming create action from our form
     global $db;
-    $db->exec('INSERT INTO User (`UserID`,`Admin`, `Username`, `Userpass`, `Email`) VALUES ("'.$_SESSION['id'].'","' .implode('","', $_POST).'")');
+    $db->exec('INSERT INTO User (`Admin`, `Username`, `Userpass`, `Email`) VALUES ("' .implode('","', $_POST).'")');
     header('Location: admin.php');
 } else if (!isset($_GET['action'])) {
     // nothing to do, sending back to profile screen
