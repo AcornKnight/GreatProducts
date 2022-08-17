@@ -213,6 +213,11 @@ if(isset($_GET['action'])) {
         global $db;
         $order = $db->query('SELECT * FROM invoice WHERE OrderID = '.$_GET['OrderID']);
         $orderlist = $order->fetch();
+        $user = $db->query('SELECT * FROM user WHERE UserID = '.$orderlist['UserID']);
+        $user = $user->fetch();
+        $address = $db->query('SELECT * FROM address WHERE AddressID = '.$orderlist['AddressID']);
+        $address = $address->fetch();
+
 
         echo '<div class="address">';
         echo '<form action="crud.php" method="post" class="AddressForm">'.
@@ -223,6 +228,13 @@ if(isset($_GET['action'])) {
             '<input type="text" name="UserID" placeholder="UserID" id="UserID" required value="'.$orderlist["UserID"].'">'.
             '<label>AddressID</label>'.
             '<input type="text" name="AddressID" placeholder="AddressID" id="AddressID" required value="'.$orderlist["AddressID"].'">'.
+            '<h3>Shipping Label</h3>'.
+            '<br/><label>'.$user["Username"].'</label>'.
+            '<br/><label>'.$address["Street"].'</label>'.
+            '<br/><label>'.$address["City"].'</label>'.
+            '<br/><label>'.$address["State"].'</label>'.
+            '<br/><label>'.$address["Zip"].'</label>'.
+            '<br/><label>'.$address["Country"].'</label>'.
             '<input type="submit" value="Update" class="update">'.
             '</form>';
         echo '<a href="admin.php" class="cancel">Cancel</a></div>';
