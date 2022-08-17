@@ -21,6 +21,7 @@
             echo '<a href="admin.php"><i class="fas fa-ad"></i>Admin</a>';
           }
           echo '<a href="profile.php?UserID='.$_SESSION['id'].'">Profile</a><br/>';
+          echo '<a href="cart.php"><i class="fas fa-cart-plus"></i>Cart</a>';
           echo '<a href="logout.php">Logout</a><br/>';
       } else {
           echo '<a href="login.php">Login</a><br/>';

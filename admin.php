@@ -49,6 +49,7 @@ require_once('settings.php');
           }
          ?>
 				<a href="profile.php"><i class="fas fa-user-circle"></i>Profile</a>
+        <a href="cart.php"><i class="fas fa-cart-plus"></i>Cart</a>
 				<a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
 			</div>
 		</nav>
