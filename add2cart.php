@@ -33,7 +33,7 @@ if(isset($_GET) && isset($_GET['ProductID'])) {
             $order = $cart->fetch();
             // Only add to the cart if we successfully have an order
             if ($order) {
-                $db->query('INSERT INTO productorder (`ProductID`, `OrderID`) VALUES ("' . $_GET['ProductID'] . '","' . $order . '")');
+                $db->query('INSERT INTO productorder (`ProductID`, `OrderID`) VALUES ("' . $_GET['ProductID'] . '","' . $order['OrderID'] . '")');
             }
         }
     }
