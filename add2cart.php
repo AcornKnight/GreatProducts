@@ -33,7 +33,16 @@ if(isset($_GET) && isset($_GET['ProductID'])) {
             $order = $cart->fetch();
             // Only add to the cart if we successfully have an order
             if ($order) {
-                $db->query('INSERT INTO productorder (`ProductID`, `OrderID`) VALUES ("' . $_GET['ProductID'] . '","' . $order['OrderID'] . '")');
+                $basket = $db->query('SELECT * from productorder WHERE OrderID = "'. $order['OrderID'] .'" AND ProductID = "'.$_GET['ProductID'].'"');
+                if($basket->rowCount() < 1) {
+                    // not already in basket, add to cart
+                    $db->exec('INSERT INTO productorder (`ProductID`, `OrderID`) VALUES ("' . $_GET['ProductID'] . '","' . $order['OrderID'] . '")');
+                } else {
+                    // already in the basket, update the count
+                    $basket = $basket->fetch();
+                    $basket["Count"] += 1;
+                    $db->exec('UPDATE productorder SET Count = "'. $basket["Count"] .'" WHERE ProductID = "'.$basket["ProductID"].'" AND OrderID = "'.$basket["OrderID"].'"' );
+                }
             }
         }
     }
@@ -43,7 +52,16 @@ if(isset($_GET) && isset($_GET['ProductID'])) {
     $order = $order->fetch();
     // Only add to the cart if we successfully have an order
     if ($order) {
-        $db->query('INSERT INTO productorder (`ProductID`, `OrderID`) VALUES ("' . $_POST['ProductID'] . '","' . $order . '")');
+        $basket = $db->query('SELECT * from productorder WHERE OrderID = "'. $order['OrderID'] .'" AND ProductID = "'.$_GET['ProductID'].'"');
+        if($basket->rowCount() < 1) {
+            // not already in basket, add to cart
+            $db->query('INSERT INTO productorder (`ProductID`, `OrderID`) VALUES ("' . $_POST['ProductID'] . '","' . $order . '")');
+        } else {
+            // already in the basket, update the count
+            $basket = $basket->fetch();
+            $basket["Count"] += 1;
+            $db->exec('UPDATE productorder SET Count = "'. $basket["Count"] .'" WHERE ProductID = "'.$basket["ProductID"].'" AND OrderID = "'.$basket["OrderID"].'"' );
+        }
     }
 } else {
     echo "no product to add to cart";

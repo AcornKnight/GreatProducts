@@ -35,23 +35,30 @@
 global $db;
 
 if (isset($_POST) && isset($_POST["OrderID"])) {
+    // User placed order, update order and product counts
     $db->exec('UPDATE invoice SET status = "ordered" WHERE OrderID = ' . $_POST["OrderID"]);
     $products = $db->query('SELECT ProductID, count from products WHERE ProductID in (SELECT ProductID from productorder WHERE OrderID = '.$_POST["OrderID"].')');
     while($product = $products->fetch()){
-        $product["count"] -= 1;
+        $qty = $db->query('SELECT Count FROM productorder WHERE OrderID = "'.$_POST["OrderID"].'" AND ProductID = "'.$product["ProductID"].'"');
+        $qty = $qty->fetch();
+        $product["count"] -= $qty["Count"];
         $db->exec('UPDATE products SET count = "'.$product["count"].'" WHERE ProductID = '.$product['ProductID']);
     }
     header('Location: profile.php');
 } else if(isset($_GET)) {
+    // User wants to see their cart
     $cart = $db->query('SELECT OrderID from invoice WHERE UserID = ' . $_SESSION["id"] . ' AND Status = "cart"');
     if ($cart->rowCount() > 0) {
         $cart = $cart->fetch();
         $products = $db->query('SELECT * from products WHERE ProductID in (SELECT ProductID from productorder WHERE OrderID = ' . $cart["OrderID"] . ')');
         echo '<table>';
-        echo '<tr><th>Name</th><th>Cost</th></tr>';
+        echo '<tr><th>Name</th><th>Quantity</th><th>Cost</th></tr>';
         while ($product = $products->fetch()) {
+            $qty = $db->query('SELECT Count FROM productorder WHERE OrderID = "'.$cart["OrderID"].'" AND ProductID = "'.$product["ProductID"].'"');
+            $qty = $qty->fetch();
             echo '<tr>' .
                 '<td>' . $product["Name"] . '</td>' .
+                '<td>' . $qty["Count"] . '</td>' .
                 '<td>' . $product["Cost"] . '</td>' .
                 '</tr>';
         }

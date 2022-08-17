@@ -128,7 +128,8 @@ INSERT INTO `productcategory` (`ProductID`, `CatID`) VALUES
 
 CREATE TABLE `productorder` (
   `ProductID` int(255) NOT NULL,
-  `OrderID` int(255) NOT NULL
+  `OrderID` int(255) NOT NULL,
+  `Count` int(255) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
