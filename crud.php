@@ -163,7 +163,7 @@ if(isset($_GET['action'])) {
             '<label>Details</label>'.
             '<input type="text" name="Details" placeholder="Details" id="Details" required value="'.$products["Details"].'">'.
             '<label>Count</label>'.
-            '<input type="text" name="Count" placeholder="count" id="Count" required value="'.$products["Count"].'">'.
+            '<input type="text" name="Count" placeholder="count" id="Count" required value="'.$products["count"].'">'.
             '<input type="submit" value="Update" class="update">'.
             '</form>';
         echo '<a href="admin.php" class="cancel">Cancel</a></div>';
