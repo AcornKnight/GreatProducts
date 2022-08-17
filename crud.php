@@ -276,13 +276,14 @@ if(isset($_GET['action'])) {
         // unknown GET action
         header('Location: admin.php');
     }
-} else if(isset($_POST['OrderID']) && isset($_POST['Status']) && isset($_POST['UserID']) && isset($_POST['AddressID'])) {
+} else if(isset($_POST['OrderID']) && isset($_POST['Status']) && isset($_POST['UserID']) && isset($_POST['AddressID']) ||
+    isset($_POST['OrderID']) && isset($_POST['Status'])) {
     // Incoming update action from our form
     global $db;
     // the quotes are correct in the UPDATE SQL below. it wants:  ... SET key1="value1", key2="value2" WHERE ...
     // it throws a hissy (syntax error) when keys are quoted. It pukes on spaces in values when values are not quoted
     $db->exec('UPDATE invoice SET '. mapped_implode('",', $_POST, '="').'" WHERE OrderID = '.$_POST['OrderID']);
-    header('Location: profile.php');
+    header('Location: admin.php');
 }  else if (!isset($_GET['action'])) {
     // nothing to do, sending back to admin screen
     header('Location: admin.php');
