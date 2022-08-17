@@ -222,7 +222,7 @@ if(isset($_GET['action'])) {
             '<label>UserID</label>'.
             '<input type="text" name="UserID" placeholder="UserID" id="UserID" required value="'.$orderlist["UserID"].'">'.
             '<label>AddressID</label>'.
-            '<input type="text" name="AddressID" placeholder="AddressID" id="AddressID" required value="'.$AddressID["AddressID"].'">'.
+            '<input type="text" name="AddressID" placeholder="AddressID" id="AddressID" required value="'.$orderlist["AddressID"].'">'.
             '<input type="submit" value="Update" class="update">'.
             '</form>';
         echo '<a href="admin.php" class="cancel">Cancel</a></div>';

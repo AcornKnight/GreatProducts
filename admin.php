@@ -117,6 +117,7 @@ require_once('settings.php');
                                 echo '<td>';
                                     echo '<td>'.$order['OrderID'].'</td>';
                                     echo '<td>'.$order['Status'].'</td>';
+                                    echo '<td>'.$order['AddressID'].'</td>';
                                     echo '<td><a href="crud.php?action=orderupdate&OrderID='.$order['OrderID'].'">UPDATE</a></td>';
                                     echo '<td><a href="crud.php?action=orderdelete&OrderID='.$order['OrderID'].'">DELETE</a></td>';
                                 echo '</td>';
