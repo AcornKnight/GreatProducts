@@ -33,8 +33,7 @@
 <?php
 
 global $db;
-print_r($_GET);
-print_r($_POST);
+
 if (isset($_POST) && isset($_POST["OrderID"])) {
     $db->exec('UPDATE invoice SET status = "ordered" WHERE OrderID = ' . $_POST["OrderID"]);
     $products = $db->query('SELECT ProductID, count from products WHERE ProductID in (SELECT ProductID from productorder WHERE OrderID = '.$_POST["OrderID"].')');
