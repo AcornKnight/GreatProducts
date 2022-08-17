@@ -16,13 +16,10 @@
       <?php
 
       if(isset($_SESSION['name'])) {
-
           echo '<a href="index.php"><i class="fas fa-archive"></i>Main</a>';
-          <?php
-            if(isset($_SESSION['isAdmin']) && $_SESSION['isAdmin'] == 1) {
-              echo '<a href="admin.php"><i class="fas fa-ad"></i>Admin</a>';
-            }
-           ?>
+          if(isset($_SESSION['isAdmin']) && $_SESSION['isAdmin'] == 1) {
+            echo '<a href="admin.php"><i class="fas fa-ad"></i>Admin</a>';
+          }
           echo '<a href="profile.php?UserID='.$_SESSION['id'].'">Profile</a><br/>';
           echo '<a href="logout.php">Logout</a><br/>';
       } else {

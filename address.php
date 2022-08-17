@@ -29,12 +29,12 @@ function mapped_implode($glue, $array, $symbol = '=') {
         )
     );
 }
-echo '<hr/>GET';
-print_r($_GET);
-echo '<hr/>POST';
-print_r($_POST);
-echo '<hr/>IMPLODE';
-print_r(implode(',', $_POST));
+// echo '<hr/>GET';
+// print_r($_GET);
+// echo '<hr/>POST';
+// print_r($_POST);
+// echo '<hr/>IMPLODE';
+// print_r(implode(',', $_POST));
 echo '<hr/>';
 if(isset($_GET['action'])) {
 // Incoming action from the profile page

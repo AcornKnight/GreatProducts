@@ -96,11 +96,11 @@ require_once('settings.php');
                         <?php
                             while($product=$products->fetch()) {
                                 echo '<tr>';
-                                    echo '<td>'.$product['productID'].'</td>';
-                                    echo '<td>'.$product['name'].'</td>';
-                                    echo '<td>'.$product['cost'].'</td>';
-                                    echo '<td>'.$product['details'].'</td>';
-                                    echo '<td>'.$product['count'].'</td>';
+                                    echo '<td>'.$product['ProductID'].'</td>';
+                                    echo '<td>'.$product['Name'].'</td>';
+                                    echo '<td>'.$product['Cost'].'</td>';
+                                    echo '<td>'.$product['Details'].'</td>';
+                                    echo '<td>'.$product['Count'].'</td>';
                                     echo '<td><a href="crud.php?action=productupdate&ProductID='.$product['ProductID'].'">UPDATE</a></td>';
                                     echo '<td><a href="crud.php?action=productdelete&ProductID='.$product['ProductID'].'">DELETE</a></td>';
                                 echo '</tr>';

@@ -190,10 +190,10 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`UserID`, `Admin`, `Username`, `Userpass`, `Email`) VALUES
-(2, 0, 'sysUser', NULL, NULL),
-(3, 1, 'ngestiehr', 'pass', 'gestiehrn1@nku.edu'),
-(5, 1, 'Kenneth Welch', 'hi', 'Kwelch@nku.edu'),
-(6, 0, 'Qu Eerie', 'pun', 'dummysearch@gmail.com');
+(0, 0, 'sysUser', NULL, NULL),
+(1, 1, 'ngestiehr', 'pass', 'gestiehrn1@nku.edu'),
+(2, 1, 'Kenneth Welch', 'hi', 'Kwelch@nku.edu'),
+(3, 0, 'Qu Eerie', 'pun', 'dummysearch@gmail.com');
 
 --
 -- Indexes for dumped tables

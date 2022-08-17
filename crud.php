@@ -29,18 +29,12 @@ function mapped_implode($glue, $array, $symbol = '=') {
         )
     );
 }
-echo '<hr/>GET';
-print_r($_GET);
-echo '<hr/>POST';
-print_r($_POST);
-echo '<hr/>IMPLODE';
-print_r(implode(',', $_POST));
-echo '<hr/>';
+
 
 // USERS CRUD BELOW
 if(isset($_GET['action'])) {
 // Incoming action from the admin page
-    if ($_GET['action'] == "delete") {
+    if ($_GET['action'] == "userdelete") {
         global $db;
         $db->query('DELETE FROM User where UserID = ' . $_GET['UserID']);
         header('Location: admin.php');
@@ -50,7 +44,7 @@ if(isset($_GET['action'])) {
         $users = $userlist->fetch();
 
         echo '<div class="address">';
-        echo '<form action="address.php" method="post" class="AddressForm">'.
+        echo '<form action="crud.php" method="post" class="AddressForm">'.
             '<input type="hidden" name="UserID" placeholder="UserID" id="UserID" value="'. $_GET['UserID'] .'" required>'.
             '<label>Admin<label/>'.
             '<input type="text" name="Admin" placeholder="0 for no, 1 for yes" id="Admin" required value="'.$users["Admin"].'">'.
@@ -65,7 +59,7 @@ if(isset($_GET['action'])) {
         echo '<a href="admin.php" class="cancel">Cancel</a></div>';
     } else if ($_GET['action'] == "usercreate") {
         echo '<div class="address">';
-        echo '<form action="address.php" method="post" class="AddressForm">'.
+        echo '<form action="crud.php" method="post" class="AddressForm">'.
             '<label>Admin<label/>'.
             '<input type="text" name="Admin" placeholder="Admin" id="Admin" required>'.
             '<label>Username</label>'.
@@ -77,7 +71,7 @@ if(isset($_GET['action'])) {
             '<input type="submit" value="Add" class="create">'.
             '</form>';
         echo '<a href="admin.php" class="cancel">Cancel</a></div>';
-    } else {
+    } else if (!isset($_GET['action'])) {
         // unknown GET action
         header('Location: admin.php');
     }
@@ -93,13 +87,13 @@ if(isset($_GET['action'])) {
     global $db;
     $db->exec('INSERT INTO User (`UserID`,`Admin`, `Username`, `Userpass`, `Email`) VALUES ("'.$_SESSION['id'].'","' .implode('","', $_POST).'")');
     header('Location: admin.php');
-} else {
+} else if (!isset($_GET['action'])) {
     // nothing to do, sending back to profile screen
     header('Location: admin.php');
 }
 
 // CATEGORY CRUD BELOW
-if(isset($_GET['action'])) {
+if(isset($_GET['action']) && $_GET['action'] == "categorydelete") {
 // Incoming action from the admin page
     if ($_GET['action'] == "categorydelete") {
         global $db;
@@ -111,7 +105,7 @@ if(isset($_GET['action'])) {
         $category = $categorylist->fetch();
 
         echo '<div class="address">';
-        echo '<form action="address.php" method="post" class="AddressForm">'.
+        echo '<form action="crud.php" method="post" class="AddressForm">'.
             '<input type="hidden" name="CatID" placeholder="CatID" id="CatID" value="'. $_GET['CatID'] .'" required>'.
             '<label>Category Name<label/>'.
             '<input type="text" name="CatName" placeholder="CatName" id="CatName" required value="'.$category["CatName"].'">'.
@@ -120,13 +114,13 @@ if(isset($_GET['action'])) {
         echo '<a href="admin.php" class="cancel">Cancel</a></div>';
     } else if ($_GET['action'] == "create") {
         echo '<div class="address">';
-        echo '<form action="address.php" method="post" class="AddressForm">'.
+        echo '<form action="crud.php" method="post" class="AddressForm">'.
             '<label>Category Name<label/>'.
             '<input type="text" name="CatName" placeholder="CatName" id="CatName" required>'.
             '<input type="submit" value="Add" class="create">'.
             '</form>';
         echo '<a href="admin.php" class="cancel">Cancel</a></div>';
-    } else {
+    } else if (!isset($_GET['action'])) {
         // unknown GET action
         header('Location: admin.php');
     }
@@ -142,7 +136,7 @@ if(isset($_GET['action'])) {
     global $db;
     $db->exec('INSERT INTO Category (`CatID`,`CatName`) VALUES ("'.$_SESSION['id'].'","' .implode('","', $_POST).'")');
     header('Location: admin.php');
-} else {
+} else if (!isset($_GET['action'])) {
     // nothing to do, sending back to profile screen
     header('Location: admin.php');
 }
@@ -160,7 +154,7 @@ if(isset($_GET['action'])) {
         $products = $productlist->fetch();
 
         echo '<div class="address">';
-        echo '<form action="address.php" method="post" class="AddressForm">'.
+        echo '<form action="crud.php" method="post" class="AddressForm">'.
             '<input type="hidden" name="ProductID" placeholder="ProductID" id="ProductID" value="'. $_GET['ProductID'] .'" required>'.
             '<label>Name<label/>'.
             '<input type="text" name="Name" placeholder="Name" id="Name" required value="'.$products["Name"].'">'.
@@ -175,7 +169,7 @@ if(isset($_GET['action'])) {
         echo '<a href="admin.php" class="cancel">Cancel</a></div>';
     } else if ($_GET['action'] == "create") {
         echo '<div class="address">';
-        echo '<form action="address.php" method="post" class="AddressForm">'.
+        echo '<form action="crud.php" method="post" class="AddressForm">'.
             '<label>Name<label/>'.
             '<input type="text" name="Name" placeholder="Name" id="Name" required>'.
             '<label>Cost</label>'.
@@ -187,7 +181,7 @@ if(isset($_GET['action'])) {
             '<input type="submit" value="Add" class="create">'.
             '</form>';
         echo '<a href="admin.php" class="cancel">Cancel</a></div>';
-    } else {
+    } else if (!isset($_GET['action'])) {
         // unknown GET action
         header('Location: admin.php');
     }
@@ -203,7 +197,7 @@ if(isset($_GET['action'])) {
     global $db;
     $db->exec('INSERT INTO Products (`ProductID`,`Name`, `Cost`, `Details`, `Count`) VALUES ("'.$_SESSION['id'].'","' .implode('","', $_POST).'")');
     header('Location: admin.php');
-} else {
+} else if (!isset($_GET['action'])) {
     // nothing to do, sending back to admin screen
     header('Location: admin.php');
 }
@@ -232,7 +226,7 @@ if(isset($_GET['action'])) {
             '<input type="submit" value="Update" class="update">'.
             '</form>';
         echo '<a href="admin.php" class="cancel">Cancel</a></div>';
-    }  else {
+    }  else if (!isset($_GET['action'])) {
         // unknown GET action
         header('Location: admin.php');
     }
@@ -243,7 +237,7 @@ if(isset($_GET['action'])) {
     // it throws a hissy (syntax error) when keys are quoted. It pukes on spaces in values when values are not quoted
     $db->exec('UPDATE invoice SET '. mapped_implode('",', $_POST, '="').'" WHERE OrderID = '.$_POST['OrderID']);
     header('Location: profile.php');
-}  else {
+}  else if (!isset($_GET['action'])) {
     // nothing to do, sending back to admin screen
     header('Location: admin.php');
 }
