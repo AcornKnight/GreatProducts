@@ -37,7 +37,11 @@ print_r($_GET);
 print_r($_POST);
 if (isset($_POST) && isset($_POST["OrderID"])) {
     $db->exec('UPDATE invoice SET status = "ordered" WHERE OrderID = ' . $_POST["OrderID"]);
-    // TODO need to update product counts
+    $products = $db->query('SELECT ProductID, count from products WHERE ProductID in (SELECT ProductID from productorder WHERE OrderID = '.$_POST["OrderID"].')');
+    while($product = $products->fetch()){
+        $product["count"] -= 1;
+        $db->exec('UPDATE products SET count = "'.$product["count"].'" WHERE ProductID = '.$product['ProductID']);
+    }
     header('Location: profile.php');
 } else if(isset($_GET)) {
     $cart = $db->query('SELECT OrderID from invoice WHERE UserID = ' . $_SESSION["id"] . ' AND Status = "cart"');
