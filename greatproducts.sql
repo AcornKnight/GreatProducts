@@ -55,7 +55,7 @@ INSERT INTO `address` (`AddressID`, `UserID`, `Street`, `City`, `Zip`, `State`, 
 --
 
 CREATE TABLE `category` (
-  `CatID` int(255) NOT NULL,
+  `CatID` int(255) AUTO_INCREMENT PRIMARY KEY,
   `CatName` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -77,7 +77,7 @@ INSERT INTO `category` (`CatID`, `CatName`) VALUES
 --
 
 CREATE TABLE `invoice` (
-  `OrderID` int(255) NOT NULL,
+  `OrderID` int(255) AUTO_INCREMENT PRIMARY KEY,
   `Status` enum('cart','ordered','shipped','delivered') DEFAULT NULL,
   `UserID` int(255) NOT NULL,
   `AddressID` int(255) NOT NULL
@@ -146,7 +146,7 @@ INSERT INTO `productorder` (`ProductID`, `OrderID`) VALUES
 --
 
 CREATE TABLE `products` (
-  `ProductID` int(255) NOT NULL,
+  `ProductID` int(255) AUTO_INCREMENT PRIMARY KEY,
   `Name` varchar(32) NOT NULL,
   `Cost` double NOT NULL,
   `Details` varchar(2200) NOT NULL,
@@ -178,7 +178,7 @@ INSERT INTO `products` (`ProductID`, `Name`, `Cost`, `Details`, `Count`) VALUES
 --
 
 CREATE TABLE `user` (
-  `UserID` int(255) NOT NULL,
+  `UserID` int(255) AUTO_INCREMENT PRIMARY KEY,
   `Admin` tinyint(1) NOT NULL,
   `Username` varchar(32) NOT NULL,
   `Userpass` varchar(32) DEFAULT NULL,
@@ -194,70 +194,6 @@ INSERT INTO `user` (`UserID`, `Admin`, `Username`, `Userpass`, `Email`) VALUES
 (1, 1, 'ngestiehr', 'pass', 'gestiehrn1@nku.edu'),
 (2, 1, 'Kenneth Welch', 'hi', 'Kwelch@nku.edu'),
 (3, 0, 'Qu Eerie', 'pun', 'dummysearch@gmail.com');
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `address`
---
-
-
---
--- Indexes for table `category`
---
-ALTER TABLE `category`
-  ADD PRIMARY KEY (`CatID`),
-  ADD UNIQUE KEY `CatID_2` (`CatID`),
-  ADD KEY `CatID` (`CatID`);
-
---
--- Indexes for table `invoice`
---
-ALTER TABLE `invoice`
-  ADD PRIMARY KEY (`OrderID`),
-  ADD KEY `purchase` (`UserID`),
-  ADD KEY `location` (`AddressID`);
-
---
--- Indexes for table `productcategory`
---
-ALTER TABLE `productcategory`
-  ADD KEY `ProductID` (`ProductID`,`CatID`);
-
---
--- Indexes for table `productorder`
---
-ALTER TABLE `productorder`
-  ADD KEY `ProductID` (`ProductID`,`OrderID`),
-  ADD KEY `userbuy` (`OrderID`);
-
---
--- Indexes for table `products`
---
-ALTER TABLE `products`
-  ADD PRIMARY KEY (`ProductID`),
-  ADD UNIQUE KEY `ProductID_2` (`ProductID`),
-  ADD KEY `ProductID` (`ProductID`);
-
---
--- Indexes for table `user`
---
-ALTER TABLE `user`
-  ADD UNIQUE KEY `UserID` (`UserID`),
-  ADD UNIQUE KEY `UserID_2` (`UserID`,`Admin`),
-  ADD KEY `UserID_3` (`UserID`,`Admin`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `user`
---
-ALTER TABLE `user`
-  MODIFY `UserID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables
