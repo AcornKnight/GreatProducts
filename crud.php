@@ -225,9 +225,9 @@ if(isset($_GET['action'])) {
             '<label>Status<label/>'.
             '<input type="text" name="Status" placeholder="Status" id="Status" required value="'.$orderlist["Status"].'">'.
             '<label>UserID</label>'.
-            '<input type="text" name="UserID" placeholder="UserID" id="UserID" required value="'.$orderlist["UserID"].'">'.
+            '<input type="text" readonly=true name="UserID" placeholder="UserID" id="UserID" required value="'.$orderlist["UserID"].'">'.
             '<label>AddressID</label>'.
-            '<input type="text" name="AddressID" placeholder="AddressID" id="AddressID" required value="'.$orderlist["AddressID"].'">'.
+            '<input type="text" readonly=true name="AddressID" placeholder="AddressID" id="AddressID" required value="'.$orderlist["AddressID"].'">'.
             '<h3>Shipping Label</h3>'.
             '<br/><label>'.$user["Username"].'</label>'.
             '<br/><label>'.$address["Street"].'</label>'.
