@@ -136,7 +136,7 @@ body.loggedin {
 }
 
 .address label {
-	color: white;
+	color: black;
 	width: 130px;
 }
 .address input {
