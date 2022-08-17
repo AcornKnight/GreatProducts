@@ -88,7 +88,7 @@ CREATE TABLE `invoice` (
 --
 
 INSERT INTO `invoice` (`OrderID`, `Status`, `UserID`, `AddressID`) VALUES
-(1, 'delivered', 5, 5),
+(1, 'delivered', 2, 5),
 (2, 'cart', 3, 1);
 
 -- --------------------------------------------------------
