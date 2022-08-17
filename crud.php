@@ -87,9 +87,6 @@ if(isset($_GET['action'])) {
     global $db;
     $db->exec('INSERT INTO User (`Admin`, `Username`, `Userpass`, `Email`) VALUES ("' .implode('","', $_POST).'")');
     header('Location: admin.php');
-} else if (!isset($_GET['action'])) {
-    // nothing to do, sending back to profile screen
-    header('Location: admin.php');
 }
 
 // CATEGORY CRUD BELOW
@@ -135,9 +132,6 @@ if(isset($_GET['action']) && $_GET['action'] == "categorydelete") {
     // Incoming create action from our form
     global $db;
     $db->exec('INSERT INTO Category (`CatID`,`CatName`) VALUES ("' .implode('","', $_POST).'")');
-    header('Location: admin.php');
-} else if (!isset($_GET['action'])) {
-    // nothing to do, sending back to profile screen
     header('Location: admin.php');
 }
 
@@ -190,15 +184,12 @@ if(isset($_GET['action'])) {
     global $db;
     // the quotes are correct in the UPDATE SQL below. it wants:  ... SET key1="value1", key2="value2" WHERE ...
     // it throws a hissy (syntax error) when keys are quoted. It pukes on spaces in values when values are not quoted
-    $db->exec('UPDATE Product SET '. mapped_implode('",', $_POST, '="').'" WHERE ProductID = '.$_POST['ProductID']);
+    $db->exec('UPDATE Products SET '. mapped_implode('",', $_POST, '="').'" WHERE ProductID = '.$_POST['ProductID']);
     header('Location: admin.php');
 } else if(isset($_POST['Name']) && isset($_POST['Cost']) && isset($_POST['Details']) && isset($_POST['Count'])) {
     // Incoming create action from our form
     global $db;
     $db->exec('INSERT INTO Products (`ProductID`,`Name`, `Cost`, `Details`, `Count`) VALUES ("' .implode('","', $_POST).'")');
-    header('Location: admin.php');
-} else if (!isset($_GET['action'])) {
-    // nothing to do, sending back to admin screen
     header('Location: admin.php');
 }
 
@@ -284,10 +275,8 @@ if(isset($_GET['action'])) {
     // it throws a hissy (syntax error) when keys are quoted. It pukes on spaces in values when values are not quoted
     $db->exec('UPDATE invoice SET '. mapped_implode('",', $_POST, '="').'" WHERE OrderID = '.$_POST['OrderID']);
     header('Location: admin.php');
-}  else if (!isset($_GET['action'])) {
-    // nothing to do, sending back to admin screen
-    header('Location: admin.php');
 }
+
 ?>
 </body>
 </html>
