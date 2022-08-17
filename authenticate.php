@@ -19,7 +19,7 @@ if ( !isset($_POST['username'], $_POST['userpass']) ) {
 }
 
 // Prepare our SQL, preparing the SQL statement will prevent SQL injection.
-if ($stmt = $con->prepare('SELECT UserID, userpass, Admin FROM user WHERE username = ?')) {
+if ($stmt = $con->prepare('SELECT UserID, Userpass, Admin FROM user WHERE username = ?')) {
 
 	$stmt->bind_param('s', $_POST['username']);
 

@@ -5,10 +5,6 @@ if(isset($_GET) && isset($_GET['ProductID'])) {
     if (isset($_SESSION) && isset($_SESSION['id'])) {
         global $db;
         global $user;
-        echo '<br/>user:<br/>';
-        print_r($user);
-        echo '<br/>session:<br/>';
-        print_r($_SESSION);
         $order = null;
         $cart = $db->query('Select OrderID FROM invoice WHERE UserID=' . $_SESSION['id'] . ' AND Status = "cart"');
         if ($cart->rowCount() < 1) {
@@ -54,16 +50,7 @@ if(isset($_GET) && isset($_GET['ProductID'])) {
     if ($order) {
         $cart = $db->query('Select OrderID FROM invoice WHERE UserID=' . $_SESSION['id'] . ' AND Status = "cart"');
         $cart = $cart->fetch();
-        $basket = $db->query('SELECT * from productorder WHERE OrderID = "'. $cart['OrderID'] .'" AND ProductID = "'.$_POST['ProductID'].'"');
-        if($basket->rowCount() < 1) {
-            // not already in basket, add to cart
-            $db->exec('INSERT INTO productorder (`ProductID`, `OrderID`) VALUES ("' . $_POST['ProductID'] . '","' . $cart['OrderID'] . '")');
-        } else {
-            // already in the basket, update the count
-            $basket = $basket->fetch();
-            $basket["Count"] += 1;
-            $db->exec('UPDATE productorder SET Count = "'. $basket["Count"] .'" WHERE ProductID = "'.$basket["ProductID"].'" AND OrderID = "'.$basket["OrderID"].'"' );
-        }
+        $db->exec('INSERT INTO productorder (`ProductID`, `OrderID`) VALUES ("' . $_POST['ProductID'] . '","' . $cart['OrderID'] . '")');
     }
     header('location: index.php');
 } else {

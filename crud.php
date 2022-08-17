@@ -198,7 +198,7 @@ if(isset($_GET['action'])) {
 // Incoming action from the admin page
     if ($_GET['action'] == "orderdelete") {
         global $db;
-        $db->query('DELETE FROM invoice where OrderID = ' . $_GET['OrderID']);
+        $db->exec('DELETE FROM invoice where OrderID = ' . $_GET['OrderID']);
         header('Location: admin.php');
     } else if ($_GET['action'] == "orderupdate") {
         global $db;
@@ -214,6 +214,7 @@ if(isset($_GET['action'])) {
         echo '<form action="crud.php" method="post" >'.
             '<input type="hidden" name="OrderID" placeholder="OrderID" id="OrderID" value="'. $_GET['OrderID'] .'" required>'.
             '<label>Status:<label/><br>';
+
         switch($orderlist["Status"]) {
             case "cart":
                 echo '<input type="radio" name="Status" value="cart" checked ><label>CART</label><br>'.
