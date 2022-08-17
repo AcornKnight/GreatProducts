@@ -44,18 +44,20 @@ if(isset($_GET) && isset($_GET['ProductID'])) {
                     $db->exec('UPDATE productorder SET Count = "'. $basket["Count"] .'" WHERE ProductID = "'.$basket["ProductID"].'" AND OrderID = "'.$basket["OrderID"].'"' );
                 }
             }
+            header('location: index.php');
         }
     }
 } else if(isset($_POST) && isset($_POST["AddressID"]) && isset($_POST["ProductID"]) && isset($_SESSION) && isset($_SESSION['id'])) {
     global $db;
-    $order = $db->query('INSERT INTO invoice (`Status`, `UserID`, `AddressID`) VALUES ("cart", "'.$_SESSION['id'].'", "'.$_POST["AddressID"].'")');
-    $order = $order->fetch();
+    $order = $db->exec('INSERT INTO invoice (`Status`, `UserID`, `AddressID`) VALUES ("cart", "'.$_SESSION['id'].'", "'.$_POST["AddressID"].'")');
     // Only add to the cart if we successfully have an order
     if ($order) {
-        $basket = $db->query('SELECT * from productorder WHERE OrderID = "'. $order['OrderID'] .'" AND ProductID = "'.$_GET['ProductID'].'"');
+        $cart = $db->query('Select OrderID FROM invoice WHERE UserID=' . $_SESSION['id'] . ' AND Status = "cart"');
+        $cart = $cart->fetch();
+        $basket = $db->query('SELECT * from productorder WHERE OrderID = "'. $cart['OrderID'] .'" AND ProductID = "'.$_POST['ProductID'].'"');
         if($basket->rowCount() < 1) {
             // not already in basket, add to cart
-            $db->query('INSERT INTO productorder (`ProductID`, `OrderID`) VALUES ("' . $_POST['ProductID'] . '","' . $order . '")');
+            $db->exec('INSERT INTO productorder (`ProductID`, `OrderID`) VALUES ("' . $_POST['ProductID'] . '","' . $cart['OrderID'] . '")');
         } else {
             // already in the basket, update the count
             $basket = $basket->fetch();
@@ -63,8 +65,10 @@ if(isset($_GET) && isset($_GET['ProductID'])) {
             $db->exec('UPDATE productorder SET Count = "'. $basket["Count"] .'" WHERE ProductID = "'.$basket["ProductID"].'" AND OrderID = "'.$basket["OrderID"].'"' );
         }
     }
+    header('location: index.php');
 } else {
     echo "no product to add to cart";
+    header('location: index.php');
 }
 
 ?>
