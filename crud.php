@@ -134,7 +134,7 @@ if(isset($_GET['action']) && $_GET['action'] == "categorydelete") {
 } else if(isset($_POST['CatName'])) {
     // Incoming create action from our form
     global $db;
-    $db->exec('INSERT INTO Category (`CatID`,`CatName`) VALUES ("'.$_SESSION['id'].'","' .implode('","', $_POST).'")');
+    $db->exec('INSERT INTO Category (`CatID`,`CatName`) VALUES ("' .implode('","', $_POST).'")');
     header('Location: admin.php');
 } else if (!isset($_GET['action'])) {
     // nothing to do, sending back to profile screen
@@ -195,7 +195,7 @@ if(isset($_GET['action'])) {
 } else if(isset($_POST['Name']) && isset($_POST['Cost']) && isset($_POST['Details']) && isset($_POST['Count'])) {
     // Incoming create action from our form
     global $db;
-    $db->exec('INSERT INTO Products (`ProductID`,`Name`, `Cost`, `Details`, `Count`) VALUES ("'.$_SESSION['id'].'","' .implode('","', $_POST).'")');
+    $db->exec('INSERT INTO Products (`ProductID`,`Name`, `Cost`, `Details`, `Count`) VALUES ("' .implode('","', $_POST).'")');
     header('Location: admin.php');
 } else if (!isset($_GET['action'])) {
     // nothing to do, sending back to admin screen
