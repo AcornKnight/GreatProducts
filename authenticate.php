@@ -20,7 +20,7 @@ if ( !isset($_POST['username'], $_POST['userpass']) ) {
 
 // Prepare our SQL, preparing the SQL statement will prevent SQL injection.
 if ($stmt = $con->prepare('SELECT UserID, userpass, Admin FROM user WHERE username = ?')) {
-	// Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
+
 	$stmt->bind_param('s', $_POST['username']);
 
 	echo '<hr />';
@@ -29,14 +29,14 @@ if ($stmt = $con->prepare('SELECT UserID, userpass, Admin FROM user WHERE userna
 	$stmt->store_result();
 
 	echo '<hr />';
-//	$stmt->close();
+
 }
 
 if ($stmt->num_rows > 0) {
 	$stmt->bind_result($UserID, $userpass, $isAdmin);
 	$stmt->fetch();
 	// Account exists, now we verify the password.
-	// Note: remember to use password_hash in your registration file to store the hashed passwords.
+
 	if ( (password_verify($_POST['userpass'], $userpass)) || ($_POST['userpass'] == $userpass) ) {
 		// Verification success! User has logged-in!
 		// Create sessions, so we know the user is logged in, they basically act like cookies but remember the data on the server.
