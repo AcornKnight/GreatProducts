@@ -217,25 +217,59 @@ if(isset($_GET['action'])) {
         $user = $user->fetch();
         $address = $db->query('SELECT * FROM address WHERE AddressID = '.$orderlist['AddressID']);
         $address = $address->fetch();
+        $products = $db->query('SELECT * FROM products WHERE ProductID in (SELECT ProductID from productorder WHERE OrderID = '.$orderlist["OrderID"].')');
 
-
-        echo '<div class="address">';
-        echo '<form action="crud.php" method="post" class="AddressForm">'.
+        echo '<div class="order">';
+        echo '<form action="crud.php" method="post" >'.
             '<input type="hidden" name="OrderID" placeholder="OrderID" id="OrderID" value="'. $_GET['OrderID'] .'" required>'.
-            '<label>Status<label/>'.
-            '<input type="text" name="Status" placeholder="Status" id="Status" required value="'.$orderlist["Status"].'">'.
-            '<label>UserID</label>'.
-            '<input type="text" readonly=true name="UserID" placeholder="UserID" id="UserID" required value="'.$orderlist["UserID"].'">'.
-            '<label>AddressID</label>'.
-            '<input type="text" readonly=true name="AddressID" placeholder="AddressID" id="AddressID" required value="'.$orderlist["AddressID"].'">'.
-            '<h3>Shipping Label</h3>'.
+            '<label>Status:<label/><br>';
+        switch($orderlist["Status"]) {
+            case "cart":
+                echo '<input type="radio" name="Status" value="cart" checked ><label>CART</label><br>'.
+                    '<input type="radio" name="Status" value="ordered"><label>ORDERED</label><br>'.
+                    '<input type="radio" name="Status" value="shipped"><label>SHIPPED</label><br>'.
+                    '<input type="radio" name="Status" value="delivered"><label>DELIVERED</label><br>';
+                break;
+            case "ordered":
+                echo '<input type="radio" name="Status" value="cart"><label>CART</label><br>'.
+                    '<input type="radio" name="Status" value="ordered" checked ><label>ORDERED</label><br>'.
+                    '<input type="radio" name="Status" value="shipped"><label>SHIPPED</label><br>'.
+                    '<input type="radio" name="Status" value="delivered"><label>DELIVERED</label><br>';
+                break;
+            case "shipped":
+                echo '<input type="radio" name="Status" value="cart"><label>CART</label><br>'.
+                    '<input type="radio" name="Status" value="ordered"><label>ORDERED</label><br>'.
+                    '<input type="radio" name="Status" value="shipped" checked ><label>SHIPPED</label><br>'.
+                    '<input type="radio" name="Status" value="delivered"><label>DELIVERED</label><br>';
+                break;
+            case "delivered":
+                echo '<input type="radio" name="Status" value="cart"><label>CART</label><br>'.
+                    '<input type="radio" name="Status" value="ordered"><label>ORDERED</label><br>'.
+                    '<input type="radio" name="Status" value="shipped"><label>SHIPPED</label><br>'.
+                    '<input type="radio" name="Status" value="delivered" checked  ><label>DELIVERED</label><br>';
+                break;
+            default:
+                echo '<input type="radio" name="Status" value="cart"><label>CART</label><br>'.
+                    '<input type="radio" name="Status" value="ordered"><label>ORDERED</label><br>'.
+                    '<input type="radio" name="Status" value="shipped"><label>SHIPPED</label><br>'.
+                    '<input type="radio" name="Status" value="delivered"><label>DELIVERED</label><br>';
+                break;
+        }
+            echo '<label> UserID: '.$orderlist["UserID"].' </label>'.
+            '<br><label> AddressID: '.$orderlist["AddressID"].' </label>'.
+            '<hr /><h3>Shipping Label</h3>'.
             '<br/><label>'.$user["Username"].'</label>'.
             '<br/><label>'.$address["Street"].'</label>'.
             '<br/><label>'.$address["City"].'</label>'.
             '<br/><label>'.$address["State"].'</label>'.
             '<br/><label>'.$address["Zip"].'</label>'.
             '<br/><label>'.$address["Country"].'</label>'.
-            '<input type="submit" value="Update" class="update">'.
+            '<hr /><label>'.$user["Email"].'</label>'.
+            '<hr /><h3>Products</h3>';
+        while($product = $products->fetch()) {
+            echo '<br/><label>'.$product["ProductID"].' - '.$product["Name"].'</label>';
+        }
+        echo '<hr /><input type="submit" value="Update" class="update">'.
             '</form>';
         echo '<a href="admin.php" class="cancel">Cancel</a></div>';
     }  else if (!isset($_GET['action'])) {
