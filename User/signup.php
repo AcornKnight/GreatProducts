@@ -9,7 +9,7 @@
 		<title>Sign-up</title>
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
     <link href="style.css" rel="stylesheet" type="text/css">
-    
+
     $con = mysqli_connect($host, $username, $password, $dbname);
     if ( mysqli_connect_errno() ) {
      // If there is an error with the connection, stop the script and display the error.
@@ -18,12 +18,16 @@
 	</head>
 	<body>
 		<div class="login">
-			<h1>Login</h1>
-			<form action="authenticate.php" method="post">
+			<h1>Sign-up</h1>
+			<form action="./User/resgister.php" method="post">
 				<label for="username">
 					<i class="fas fa-user"></i>
 				</label>
 				<input type="text" name="username" placeholder="Username" id="username" required>
+				<label for="E-mail">
+					<i class="fas fa-envelope-open"></i>
+				</label>
+				<input type="text" name="email" placeholder="Email" id="email" required>
 				<label for="password">
 					<i class="fas fa-lock"></i>
 				</label>

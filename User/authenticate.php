@@ -1,6 +1,6 @@
 <?php
 require_once('./settings.php');
-global $user;
+
 
 
 
