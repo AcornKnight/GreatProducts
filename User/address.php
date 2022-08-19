@@ -12,9 +12,9 @@
   <nav class="navtop">
     <div>
       <h1>Great Products</h1>
-      <a href="./index.php"><i class="fas fa-archive"></i>Main</a>
-      <a href="./User/profile.php"><i class="fas fa-user-circle"></i>Profile</a>
-      <a href="./User/logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
+      <a href="../index.php"><i class="fas fa-archive"></i>Main</a>
+      <a href="./profile.php"><i class="fas fa-user-circle"></i>Profile</a>
+      <a href="./logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
     </div>
   </nav>
 <?php
@@ -47,7 +47,7 @@ if(isset($_GET['action'])) {
             '<input type="text" name="Country" placeholder="Country" id="Country" required value="'.$address["Country"].'">'.
             '<input type="submit" value="Update" class="update">'.
             '</form>';
-        echo '<a href="./User/profile.php" class="cancel">Cancel</a></div>';
+        echo '<a href="./profile.php" class="cancel">Cancel</a></div>';
     } else if ($_GET['action'] == "create") {
         echo '<div class="address">';
         echo '<form action="address.php" method="post" class="AddressForm">'.
@@ -63,7 +63,7 @@ if(isset($_GET['action'])) {
             '<input type="text" name="Country" placeholder="Country" id="Country" required>'.
             '<input type="submit" value="Add" class="create">'.
             '</form>';
-        echo '<a href="./User/profile.php" class="cancel">Cancel</a></div>';
+        echo '<a href="./profile.php" class="cancel">Cancel</a></div>';
     } else {
         // unknown GET action
         header('Location: ./profile.php');

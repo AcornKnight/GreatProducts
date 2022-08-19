@@ -1,4 +1,6 @@
-<?php require_once('./settings.php'); ?>
+<?php require_once('../Utils/settings.php');
+      require_once('../Utils/utils.php');
+guard("user"); ?>
 <!DOCTYPE html>
 <!-- Our main landing page. -->
 <!-- Noah R Gestiehr. -->
@@ -7,7 +9,7 @@
     <meta charset="utf-8">
     <title>Main</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
-    <link href="style.css" rel="stylesheet" type="text/css">
+    <link href="../style.css" rel="stylesheet" type="text/css">
 </head>
 <body class="loggedin">
   <nav class="navtop">
@@ -16,16 +18,16 @@
       <?php
 
       if(isset($_SESSION['name'])) {
-          echo '<a href="./index.php"><i class="fas fa-archive"></i>Main</a>';
+          echo '<a href="../index.php"><i class="fas fa-archive"></i>Main</a>';
           if(isset($_SESSION['isAdmin']) && $_SESSION['isAdmin'] == 1) {
-            echo '<a href="./Admin/admin.php"><i class="fas fa-ad"></i>Admin</a>';
+            echo '<a href="../Admin/admin.php"><i class="fas fa-ad"></i>Admin</a>';
           }
-          echo '<a href="./User/profile.php?UserID='.$_SESSION['id'].'">Profile</a><br/>';
-          echo '<a href="./Shop/cart.php"><i class="fas fa-cart-plus"></i>Cart</a>';
-          echo '<a href="./User/logout.php">Logout</a><br/>';
+          echo '<a href="../User/profile.php?UserID='.$_SESSION['id'].'">Profile</a><br/>';
+          echo '<a href="./cart.php"><i class="fas fa-cart-plus"></i>Cart</a>';
+          echo '<a href="../User/logout.php">Logout</a><br/>';
       } else {
-          echo '<a href="./User/login.php">Login</a><br/>';
-          echo '<a href="./User/signup.php">Sign up</a><br/>';
+          echo '<a href="../User/login.php">Login</a><br/>';
+          echo '<a href="../User/signup.php">Sign up</a><br/>';
       }
       echo '<hr />';
       ?>
@@ -58,7 +60,7 @@ if($prod_id) {
     echo '<h3>ProductID not specified</h3>';
 }
 
-echo '<hr /><a href="./index.php">CLOSE</a>';
+echo '<hr /><a href="../index.php">CLOSE</a>';
 
     ?>
 
