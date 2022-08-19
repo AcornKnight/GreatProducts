@@ -1,6 +1,6 @@
 <?php
-$settings = require_once('../utils/settings.php');
-$utils = require_once('../utils/utils.php');
+require_once __DIR__.'/../Utils/settings.php';
+require_once __DIR__.'/../Utils/utils.php';
 
 // Now we check if the data from the login form was submitted, isset() will check if the data exists.
 
@@ -11,7 +11,7 @@ if ( !isset($_POST['username'], $_POST['userpass']) ) {
 }
 
 // Prepare our SQL, preparing the SQL statement will prevent SQL injection.
-if ($stmt = $utils.con->prepare('SELECT UserID, Userpass, Admin FROM user WHERE username = ?')) {
+if ($stmt = $con->prepare('SELECT UserID, Userpass, Admin FROM user WHERE username = ?')) {
 
 	$stmt->bind_param('s', $_POST['username']);
 
@@ -41,13 +41,13 @@ if ($stmt->num_rows > 0) {
 		echo 'PRE';
 		global $user;
 
-		$user = $settings.db->query('SELECT * FROM user WHERE UserID = '. $UserID );
+		$user = $db->query('SELECT * FROM user WHERE UserID = '. $UserID );
 
 		$GLOBALS['user'] = $user->fetch();
 		$GLOBALS['_SESSION']['isAdmin'] = $isAdmin;
 		echo 'POST';
 
-		header('Location: ./index.php');
+		header('Location: ../index.php');
 	} else {
 		// Incorrect password
 		echo 'Incorrect username and/or password!';
