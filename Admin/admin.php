@@ -5,16 +5,6 @@ require_once(__DIR__.'/../Utils/utils.php');
 // we only want admins doing admin functions
 guard("admin");
 
-  // If the user is not logged in redirect to the login page...
-  if (!isset($_SESSION['loggedin'])) {
-	  header('Location: index.php');
-	  exit;
-    }
-    global $host, $username, $password, $dbname;
-    $con = mysqli_connect($host, $username, $password, $dbname);
-    if (mysqli_connect_errno()) {
-	     exit('Failed to connect to MySQL: ' . mysqli_connect_error());
-       }
     // We don't have the password or email info stored in sessions so instead we can get the results from the database.
     $stmt = $con->prepare('SELECT userpass, Email FROM user WHERE UserID = ?');
     // In this case we can use the account ID to get the account info.
@@ -59,24 +49,8 @@ guard("admin");
 		<div class="content">
 			<h2>Administrator Page</h2>
       <div>
-          <h3>Users:</h3>
-          <a href="crud.php?action=usercreate">ADD NEW USER</a>
-              <table>
-                    <?php
-                        while($users=$userlist->fetch()) {
-                            echo '<tr>';
-                                echo '<td>'.$users['UserID'].'</td>';
-                                echo '<td>'.$users['Admin'].'</td>';
-                                echo '<td>'.$users['Username'].'</td>';
-                                echo '<td>'.$users['Userpass'].'</td>';
-                                echo '<td>'.$users['Email'].'</td>';
-                                echo '<td><a href="crud.php?action=userupdate&UserID='.$users['UserID'].'">UPDATE</a></td>';
-                                echo '<td><a href="crud.php?action=userdelete&UserID='.$users['UserID'].'">DELETE</a></td>';
-                            echo '</tr>';
-                        }
-                    ?>
-                </table>
-          </div>
+          <h3><a href="./users.php"> Users</a></h3>
+      </div>
       <div>
           <h3>Categorys:</h3>
           <a href="crud.php?action=categorycreate">ADD NEW CATEGORY</a>
