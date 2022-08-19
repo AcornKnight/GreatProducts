@@ -20,31 +20,15 @@
 <?php
 require_once(__DIR__.'/../Utils/settings.php');
 require_once(__DIR__.'/../Utils/utils.php');
-function mapped_implode($glue, $array, $symbol = '=') {
-    return implode($glue, array_map(
-            function($k, $v) use($symbol) {
-                return $k . $symbol . $v;
-            },
-            array_keys($array),
-            array_values($array)
-        )
-    );
-}
-// echo '<hr/>GET';
-// print_r($_GET);
-// echo '<hr/>POST';
-// print_r($_POST);
-// echo '<hr/>IMPLODE';
-// print_r(implode(',', $_POST));
+guard("user");
+
 echo '<hr/>';
 if(isset($_GET['action'])) {
 // Incoming action from the profile page
     if ($_GET['action'] == "delete") {
-        global $db;
         $db->query('DELETE FROM Address where AddressID = ' . $_GET['AddressID']);
-        header('Location: ./User/profile.php');
+        header('Location: ./profile.php');
     } else if ($_GET['action'] == "update") {
-        global $db;
         $address = $db->query('SELECT * FROM Address WHERE AddressID = '.$_GET['AddressID']);
         $address = $address->fetch();
 
@@ -82,23 +66,21 @@ if(isset($_GET['action'])) {
         echo '<a href="./User/profile.php" class="cancel">Cancel</a></div>';
     } else {
         // unknown GET action
-        header('Location: ./User/profile.php');
+        header('Location: ./profile.php');
     }
 } else if(isset($_POST['AddressID']) && isset($_POST['Street']) && isset($_POST['City']) && isset($_POST['State']) && isset($_POST['Zip']) && isset($_POST['Country'])) {
     // Incoming update action from our form
-    global $db;
     // the quotes are correct in the UPDATE SQL below. it wants:  ... SET key1="value1", key2="value2" WHERE ...
     // it throws a hissy (syntax error) when keys are quoted. It pukes on spaces in values when values are not quoted
     $db->exec('UPDATE address SET '. mapped_implode('",', $_POST, '="').'" WHERE AddressID = '.$_POST['AddressID']);
-    header('Location: ./User/profile.php');
+    header('Location: ./profile.php');
 } else if(isset($_POST['Street']) && isset($_POST['City']) && isset($_POST['State']) && isset($_POST['Zip']) && isset($_POST['Country'])) {
     // Incoming create action from our form
-    global $db;
     $db->exec('INSERT INTO address (`UserID`,`Street`, `City`, `State`, `Zip`, `Country`) VALUES ("'.$_SESSION['id'].'","' .implode('","', $_POST).'")');
-    header('Location: ./User/profile.php');
+    header('Location: ./profile.php');
 } else {
     // nothing to do, sending back to profile screen
-    header('Location: ./User/profile.php');
+    header('Location: ./profile.php');
 }
 ?>
 </body>
