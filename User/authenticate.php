@@ -35,8 +35,10 @@ if ($stmt = $con->prepare('SELECT UserID, Userpass, Admin FROM user WHERE userna
 if ($stmt->num_rows > 0) {
 	$stmt->bind_result($UserID, $userpass, $isAdmin);
 	$stmt->fetch();
-	// Account exists, now we verify the password.
 
+
+	// Account exists, now we verify the password.
+  // Supporting plain text values for dummy data, hashing shall be done for trial data.
 	if ( (password_verify($_POST['userpass'], $userpass)) || ($_POST['userpass'] == $userpass) ) {
 		// Verification success! User has logged-in!
 		// Create sessions, so we know the user is logged in, they basically act like cookies but remember the data on the server.
