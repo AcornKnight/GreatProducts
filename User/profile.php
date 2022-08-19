@@ -31,7 +31,7 @@
         <a href="../index.php"><i class="fas fa-archive"></i>Main</a>
         <?php
           if(isset($_SESSION['isAdmin']) && $_SESSION['isAdmin'] == 1) {
-            echo '<a href="./Admin/admin.php"><i class="fas fa-ad"></i>Admin</a>';
+            echo '<a href="../Admin/admin.php"><i class="fas fa-ad"></i>Admin</a>';
           }
          ?>
 				<a href="../User/profile.php"><i class="fas fa-user-circle"></i>Profile</a>
