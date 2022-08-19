@@ -41,9 +41,9 @@ guard("admin");
             echo '<a href="admin.php"><i class="fas fa-ad"></i>Admin</a>';
           }
          ?>
-				<a href="profile.php"><i class="fas fa-user-circle"></i>Profile</a>
-        <a href="cart.php"><i class="fas fa-cart-plus"></i>Cart</a>
-				<a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
+				<a href="../User/profile.php"><i class="fas fa-user-circle"></i>Profile</a>
+        <a href="../Shop/cart.php"><i class="fas fa-cart-plus"></i>Cart</a>
+				<a href="../User/logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
 			</div>
 		</nav>
 		<div class="content">

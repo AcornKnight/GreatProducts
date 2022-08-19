@@ -1,17 +1,14 @@
 <?php
   require_once(__DIR__.'/../Utils/settings.php');
   require_once(__DIR__.'/../Utils/utils.php');
+  guard("admin");
 
   // If the user is not logged in redirect to the login page...
   if (!isset($_SESSION['loggedin'])) {
 	  header('Location: ../index.php');
 	  exit;
     }
-    global $host, $username, $password, $dbname;
-    $con = mysqli_connect($host, $username, $password, $dbname);
-    if (mysqli_connect_errno()) {
-	     exit('Failed to connect to MySQL: ' . mysqli_connect_error());
-       }
+
     // We don't have the password or email info stored in sessions so instead we can get the results from the database.
     $stmt = $con->prepare('SELECT userpass, Email FROM user WHERE UserID = ?');
     // In this case we can use the account ID to get the account info.
@@ -51,18 +48,6 @@
     </div>
   </nav>
 <?php
-
-function mapped_implode($glue, $array, $symbol = '=') {
-    return implode($glue, array_map(
-            function($k, $v) use($symbol) {
-                return $k . $symbol . $v;
-            },
-            array_keys($array),
-            array_values($array)
-        )
-    );
-}
-
 
 // USERS CRUD BELOW
 if(isset($_GET['action'])) {
