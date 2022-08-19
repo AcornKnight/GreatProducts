@@ -1,5 +1,6 @@
-<?php require_once('../Utils/settings.php');
-      require_once('../Utils/utils.php'); ?>
+<?php
+  require_once(__DIR__.'/../Utils/settings.php');
+  require_once(__DIR__.'/../Utils/utils.php'); ?>
 <!DOCTYPE html>
 <!-- Admin Category CRUD support file for our Great products database. -->
 <!-- Noah R Gestiehr. -->
@@ -8,7 +9,7 @@
     <meta charset="utf-8">
     <title>Admin Category Utility</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
-    <link href="style.css" rel="stylesheet" type="text/css">
+    <link href="../style.css" rel="stylesheet" type="text/css">
 </head>
 <body class="loggedin">
   <nav class="navtop">

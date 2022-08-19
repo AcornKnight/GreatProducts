@@ -1,5 +1,6 @@
-<?php require_once('../Utils/settings.php');
-      require_once('../Utils/utils.php');
+<?php
+  require_once(__DIR__.'/../Utils/settings.php');
+  require_once(__DIR__.'/../Utils/utils.php');
 
 
       if (!isset($_SESSION['loggedin'])) {

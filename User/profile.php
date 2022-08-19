@@ -1,10 +1,11 @@
 <?php
-require_once('./settings.php');
+  require_once(__DIR__.'/../Utils/settings.php');
+  require_once(__DIR__.'/../Utils/utils.php');
   // We need to use sessions, so you should always start sessions using the below code.
 //  session_start();
   // If the user is not logged in redirect to the login page...
   if (!isset($_SESSION['loggedin'])) {
-	  header('Location: ./index.php');
+	  header('Location: ../index.php');
 	  exit;
     }
     global $host, $username, $password, $dbname;
@@ -32,22 +33,22 @@ require_once('./settings.php');
 	<head>
 		<meta charset="utf-8">
 		<title>Profile Page</title>
-		<link href="style.css" rel="stylesheet" type="text/css">
+		<link href="../style.css" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
 	</head>
 	<body class="loggedin">
 		<nav class="navtop">
 			<div>
 				<h1>Great Products</h1>
-        <a href="./index.php"><i class="fas fa-archive"></i>Main</a>
+        <a href="../index.php"><i class="fas fa-archive"></i>Main</a>
         <?php
           if(isset($_SESSION['isAdmin']) && $_SESSION['isAdmin'] == 1) {
             echo '<a href="./Admin/admin.php"><i class="fas fa-ad"></i>Admin</a>';
           }
          ?>
-				<a href="./User/profile.php"><i class="fas fa-user-circle"></i>Profile</a>
-        <a href="./Shop/cart.php"><i class="fas fa-cart-plus"></i>Cart</a>
-				<a href="./Shop/logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
+				<a href="../User/profile.php"><i class="fas fa-user-circle"></i>Profile</a>
+        <a href="../Shop/cart.php"><i class="fas fa-cart-plus"></i>Cart</a>
+				<a href="../Shop/logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
 			</div>
 		</nav>
 		<div class="content">
@@ -71,7 +72,7 @@ require_once('./settings.php');
 			</div>
             <div>
                 <h3>Addresses:</h3>
-                <a href="./User/address.php?action=create">ADD NEW ADDRESS</a>
+                <a href="../User/address.php?action=create">ADD NEW ADDRESS</a>
                 <table>
                     <?php
                         while($address=$addresses->fetch()) {
@@ -81,8 +82,8 @@ require_once('./settings.php');
                                 echo '<td>'.$address['State'].'</td>';
                                 echo '<td>'.$address['Zip'].'</td>';
                                 echo '<td>'.$address['Country'].'</td>';
-                                echo '<td><a href="./User/address.php?action=update&AddressID='.$address['AddressID'].'">UPDATE</a></td>';
-                                echo '<td><a href="./User/address.php?action=delete&AddressID='.$address['AddressID'].'">DELETE</a></td>';
+                                echo '<td><a href="../User/address.php?action=update&AddressID='.$address['AddressID'].'">UPDATE</a></td>';
+                                echo '<td><a href="../User/address.php?action=delete&AddressID='.$address['AddressID'].'">DELETE</a></td>';
                             echo '</tr>';
                         }
                     ?>

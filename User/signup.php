@@ -1,4 +1,6 @@
-<?php require_once('./settings.php'); ?>
+<?php
+	require_once(__DIR__.'/../Utils/settings.php');
+	require_once(__DIR__.'/../Utils/utils.php'); ?>
 <!DOCTYPE html>
 <!-- Sign-in page for our Great products database. -->
 <!-- Noah R Gestiehr. This page should display a login form to the user and authenticate it -- >
@@ -8,7 +10,7 @@
 		<meta charset="utf-8">
 		<title>Sign-up</title>
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
-    <link href="style.css" rel="stylesheet" type="text/css">
+    <link href="../style.css" rel="stylesheet" type="text/css">
 
     $con = mysqli_connect($host, $username, $password, $dbname);
     if ( mysqli_connect_errno() ) {

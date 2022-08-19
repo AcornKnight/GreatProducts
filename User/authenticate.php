@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__.'/../Utils/settings.php';
-require_once __DIR__.'/../Utils/utils.php';
+  require_once __DIR__.'/../Utils/settings.php';
+  require_once __DIR__.'/../Utils/utils.php';
 
 // Now we check if the data from the login form was submitted, isset() will check if the data exists.
 
