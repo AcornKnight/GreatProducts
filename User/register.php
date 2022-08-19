@@ -1,15 +1,7 @@
 <?php
   require_once(__DIR__.'/../Utils/settings.php');
   require_once(__DIR__.'/../Utils/utils.php');
-
-
-
-
-$con = mysqli_connect($host, $username, $password, $dbname);
-if ( mysqli_connect_errno() ) {
- // If there is an error with the connection, stop the script and display the error.
- exit('Failed to connect to MySQL: ' . mysqli_connect_error());
-}
+  guard("guest");
 
 // Now we check if the data from the login form was submitted, isset() will check if the data exists.
 
@@ -21,15 +13,12 @@ if ( !isset($_POST['username'], $_POST['userpass'],$_POST['email']) ) {
 
 // Prepare our SQL, preparing the SQL statement will prevent SQL injection.
 
-$stmt = $con->prepare("INSERT INTO User (`Username`, `Userpass`, `Email`) VALUES (:username, :password, :email)");
-$stmt->bindParam(':username', $_POST['username']);
-
+$stmt = $con->prepare("INSERT INTO User (`Username`, `Userpass`, `Email`) VALUES (?, ?, ?)");
 $password = password_hash($_POST['userpass'], PASSWORD_DEFAULT);
-$stmt->bindParam(':password', $password);
-$stmt->bindParam(':email', $_POST['email']);
-
+$params = [$_POST['username'], $password,  $_POST['email']];
+$stmt->bind_param('sss', ...$params);
 
 $stmt->execute();
 
-header('Location: ./index.php');
+header('Location: ../index.php');
 ?>
