@@ -24,7 +24,7 @@
     </div>
 </nav>
 <?php
-require_once('../utils/settings.php');
-require_once('../utils/utils.php');
+require_once('../Utils/settings.php');
+require_once('../Utils/utils.php');
 
 guard("admin");
