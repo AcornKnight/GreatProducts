@@ -1,8 +1,14 @@
 <?php
-require_once('../utils/settings.php');
-require_once('../utils/utils.php');
+require_once('./settings.php');
 
 
+
+
+$con = mysqli_connect($host, $username, $password, $dbname);
+if ( mysqli_connect_errno() ) {
+ // If there is an error with the connection, stop the script and display the error.
+ exit('Failed to connect to MySQL: ' . mysqli_connect_error());
+}
 
 // Now we check if the data from the login form was submitted, isset() will check if the data exists.
 
@@ -29,8 +35,10 @@ if ($stmt = $con->prepare('SELECT UserID, Userpass, Admin FROM user WHERE userna
 if ($stmt->num_rows > 0) {
 	$stmt->bind_result($UserID, $userpass, $isAdmin);
 	$stmt->fetch();
-	// Account exists, now we verify the password.
 
+
+	// Account exists, now we verify the password.
+  // Supporting plain text values for dummy data, hashing shall be done for trial data.
 	if ( (password_verify($_POST['userpass'], $userpass)) || ($_POST['userpass'] == $userpass) ) {
 		// Verification success! User has logged-in!
 		// Create sessions, so we know the user is logged in, they basically act like cookies but remember the data on the server.
@@ -47,7 +55,7 @@ if ($stmt->num_rows > 0) {
 		$GLOBALS['_SESSION']['isAdmin'] = $isAdmin;
 		echo 'POST';
 
-		header('Location: ../index.php');
+		header('Location: ./index.php');
 	} else {
 		// Incorrect password
 		echo 'Incorrect username and/or password!';
