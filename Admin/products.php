@@ -1,6 +1,7 @@
 <?php
   require_once(__DIR__.'/../Utils/settings.php');
   require_once(__DIR__.'/../Utils/utils.php');
+  guard("admin");
 
   // If the user is not logged in redirect to the login page...
   if (!isset($_SESSION['loggedin'])) {
@@ -52,7 +53,7 @@
 			<h2>Administrator Products Page</h2>
       <div>
               <h3>Products:</h3>
-              <a href="productutil.php?action=productcreate">ADD NEW PRODUCT</a>
+              <a href="./productutil.php?action=productcreate">ADD NEW PRODUCT</a>
                   <table>
                         <?php
                             while($product=$products->fetch()) {
@@ -62,8 +63,8 @@
                                     echo '<td>'.$product['Cost'].'</td>';
                                     echo '<td>'.$product['Details'].'</td>';
                                     echo '<td>'.$product['Count'].'</td>';
-                                    echo '<td><a href="productutil.php?action=productupdate&ProductID='.$product['ProductID'].'">UPDATE</a></td>';
-                                    echo '<td><a href="productutil.php?action=productdelete&ProductID='.$product['ProductID'].'">DELETE</a></td>';
+                                    echo '<td><a href="./productutil.php?action=productupdate&ProductID='.$product['ProductID'].'">UPDATE</a></td>';
+                                    echo '<td><a href="./productutil.php?action=productdelete&ProductID='.$product['ProductID'].'">DELETE</a></td>';
                                 echo '</tr>';
                             }
                         ?>

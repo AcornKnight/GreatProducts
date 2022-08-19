@@ -1,6 +1,8 @@
 <?php
   require_once(__DIR__.'/../Utils/settings.php');
   require_once(__DIR__.'/../Utils/utils.php');
+  guard("admin");
+
 
 
       if (!isset($_SESSION['loggedin'])) {
@@ -38,15 +40,15 @@
   <nav class="navtop">
     <div>
       <h1>Great Products</h1>
-      <a href="index.php"><i class="fas fa-archive"></i>Main</a>
+      <a href="../index.php"><i class="fas fa-archive"></i>Main</a>
       <?php
         if(isset($_SESSION['isAdmin']) && $_SESSION['isAdmin'] == 1) {
           echo '<a href="../Admin/admin.php"><i class="fas fa-ad"></i>Admin</a>';
         }
        ?>
-      <a href="profile.php"><i class="fas fa-user-circle"></i>Profile</a>
-      <a href="cart.php"><i class="fas fa-cart-plus"></i>Cart</a>
-      <a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
+      <a href="../User/profile.php"><i class="fas fa-user-circle"></i>Profile</a>
+      <a href="../Shop/cart.php"><i class="fas fa-cart-plus"></i>Cart</a>
+      <a href="../User/logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
     </div>
   </nav>
 
