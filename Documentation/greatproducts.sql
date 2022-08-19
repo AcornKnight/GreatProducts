@@ -186,7 +186,7 @@ CREATE TABLE `user` (
   `UserID` int(255) NOT NULL,
   `Admin` tinyint(1) NOT NULL,
   `Username` varchar(32) NOT NULL,
-  `Userpass` varchar(32) DEFAULT NULL,
+  `Userpass` varchar(255) DEFAULT NULL,
   `Email` varchar(32) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
