@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- Login page for our Great products database. -->
-<!-- Noah R Gestiehr. This page should display a login form to the user and authenticate it -- >
+<!-- Noah R Gestiehr. This page should display a login form to the user and authenticate it -->
 <!-- On successful authentication, should redirect user to the landing page. Otherwise errors -->
 <html>
 	<head>

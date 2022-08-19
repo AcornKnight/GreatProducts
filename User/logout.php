@@ -1,6 +1,6 @@
 <?php
 
-// This file just terminates the users curretn session on logout then redirects them to the general user area.
+// This file just terminates the users current session on logout then redirects them to the general user area.
 //session_start();
 //session_destroy();
 
