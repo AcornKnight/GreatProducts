@@ -52,58 +52,14 @@ guard("admin");
           <h3><a href="./users.php"> Users</a></h3>
       </div>
       <div>
-          <h3>Categorys:</h3>
-          <a href="crud.php?action=categorycreate">ADD NEW CATEGORY</a>
-              <table>
-                    <?php
-                        while($category=$categorys->fetch()) {
-                            echo '<tr>';
-                                echo '<td>'.$category['CatID'].'</td>';
-                                echo '<td>'.$category['CatName'].'</td>';
-                                echo '<td><a href="crud.php?action=categoryupdate&CatID='.$category['CatID'].'">UPDATE</a></td>';
-                                echo '<td><a href="crud.php?action=categorydelete&CatID='.$category['CatID'].'">DELETE</a></td>';
-                            echo '</tr>';
-                        }
-                    ?>
-                </table>
-        </div>
-        <div>
-              <h3>Products:</h3>
-              <a href="crud.php?action=productcreate">ADD NEW PRODUCT</a>
-                  <table>
-                        <?php
-                            while($product=$products->fetch()) {
-                                echo '<tr>';
-                                    echo '<td>'.$product['ProductID'].'</td>';
-                                    echo '<td>'.$product['Name'].'</td>';
-                                    echo '<td>'.$product['Cost'].'</td>';
-                                    echo '<td>'.$product['Details'].'</td>';
-                                    echo '<td>'.$product['Count'].'</td>';
-                                    echo '<td><a href="crud.php?action=productupdate&ProductID='.$product['ProductID'].'">UPDATE</a></td>';
-                                    echo '<td><a href="crud.php?action=productdelete&ProductID='.$product['ProductID'].'">DELETE</a></td>';
-                                echo '</tr>';
-                            }
-                        ?>
-                    </table>
-            </div>
-            <div>
-                <h3>Orders:</h3>
-                <table>
-                    <?php
-                        while($order=$orders->fetch()) {
-                            echo '<tr>';
-                                echo '<td>';
-                                    echo '<td>'.$order['OrderID'].'</td>';
-                                    echo '<td>'.$order['Status'].'</td>';
-                                    echo '<td>'.$order['AddressID'].'</td>';
-                                    echo '<td><a href="crud.php?action=orderupdate&OrderID='.$order['OrderID'].'">UPDATE</a></td>';
-                                    echo '<td><a href="crud.php?action=orderdelete&OrderID='.$order['OrderID'].'">DELETE</a></td>';
-                                echo '</td>';
-                            echo '</tr>';
-                        }
-                    ?>
-                </table>
-            </div>
+          <h3><a href="./orders.php"> Orders</a></h3>
+      </div>
+      <div>
+          <h3><a href="./products.php"> Products</a></h3>
+      </div>
+      <div>
+          <h3><a href="./categories.php"> Categories</a></h3>
+      </div>
 		</div>
 	</body>
 </html>

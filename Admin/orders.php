@@ -37,6 +37,7 @@
 <div>
     <h3>Orders:</h3>
     <table>
+        <tr><th>ID</th><th>Status</th><th>AddressID</th><th>Update</th><th>Delete</th></th></tr>
         <?php
             while($order=$orders->fetch()) {
                 echo '<tr>';

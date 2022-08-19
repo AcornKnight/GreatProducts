@@ -58,6 +58,7 @@
         <h3>Categorys:</h3>
         <a href="../Admin/categoryutil.php?action=categorycreate">ADD NEW CATEGORY</a>
             <table>
+                  <tr><th>ID</th><th>Category Name</th><th>Update</th><th>Delete</th></th></tr>
                   <?php
                       while($category=$categorys->fetch()) {
                           echo '<tr>';

@@ -55,6 +55,7 @@
               <h3>Products:</h3>
               <a href="./productutil.php?action=productcreate">ADD NEW PRODUCT</a>
                   <table>
+                        <tr><th>ID</th><th>Name</th><th>Cost</th><th>Details/th><th>Count</th><th>Update</th><th>Delete</th></th></tr>
                         <?php
                             while($product=$products->fetch()) {
                                 echo '<tr>';
