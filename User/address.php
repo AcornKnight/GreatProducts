@@ -12,13 +12,13 @@
   <nav class="navtop">
     <div>
       <h1>Great Products</h1>
-      <a href="index.php"><i class="fas fa-archive"></i>Main</a>
-      <a href="profile.php"><i class="fas fa-user-circle"></i>Profile</a>
-      <a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
+      <a href="./index.php"><i class="fas fa-archive"></i>Main</a>
+      <a href="./User/profile.php"><i class="fas fa-user-circle"></i>Profile</a>
+      <a href="./User/logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
     </div>
   </nav>
 <?php
-require_once('settings.php');
+require_once('./settings.php');
 function mapped_implode($glue, $array, $symbol = '=') {
     return implode($glue, array_map(
             function($k, $v) use($symbol) {
@@ -41,7 +41,7 @@ if(isset($_GET['action'])) {
     if ($_GET['action'] == "delete") {
         global $db;
         $db->query('DELETE FROM Address where AddressID = ' . $_GET['AddressID']);
-        header('Location: profile.php');
+        header('Location: ./User/profile.php');
     } else if ($_GET['action'] == "update") {
         global $db;
         $address = $db->query('SELECT * FROM Address WHERE AddressID = '.$_GET['AddressID']);
@@ -62,7 +62,7 @@ if(isset($_GET['action'])) {
             '<input type="text" name="Country" placeholder="Country" id="Country" required value="'.$address["Country"].'">'.
             '<input type="submit" value="Update" class="update">'.
             '</form>';
-        echo '<a href="profile.php" class="cancel">Cancel</a></div>';
+        echo '<a href="./User/profile.php" class="cancel">Cancel</a></div>';
     } else if ($_GET['action'] == "create") {
         echo '<div class="address">';
         echo '<form action="address.php" method="post" class="AddressForm">'.
@@ -78,10 +78,10 @@ if(isset($_GET['action'])) {
             '<input type="text" name="Country" placeholder="Country" id="Country" required>'.
             '<input type="submit" value="Add" class="create">'.
             '</form>';
-        echo '<a href="profile.php" class="cancel">Cancel</a></div>';
+        echo '<a href="./User/profile.php" class="cancel">Cancel</a></div>';
     } else {
         // unknown GET action
-        header('Location: profile.php');
+        header('Location: ./User/profile.php');
     }
 } else if(isset($_POST['AddressID']) && isset($_POST['Street']) && isset($_POST['City']) && isset($_POST['State']) && isset($_POST['Zip']) && isset($_POST['Country'])) {
     // Incoming update action from our form
@@ -89,15 +89,15 @@ if(isset($_GET['action'])) {
     // the quotes are correct in the UPDATE SQL below. it wants:  ... SET key1="value1", key2="value2" WHERE ...
     // it throws a hissy (syntax error) when keys are quoted. It pukes on spaces in values when values are not quoted
     $db->exec('UPDATE address SET '. mapped_implode('",', $_POST, '="').'" WHERE AddressID = '.$_POST['AddressID']);
-    header('Location: profile.php');
+    header('Location: ./User/profile.php');
 } else if(isset($_POST['Street']) && isset($_POST['City']) && isset($_POST['State']) && isset($_POST['Zip']) && isset($_POST['Country'])) {
     // Incoming create action from our form
     global $db;
     $db->exec('INSERT INTO address (`UserID`,`Street`, `City`, `State`, `Zip`, `Country`) VALUES ("'.$_SESSION['id'].'","' .implode('","', $_POST).'")');
-    header('Location: profile.php');
+    header('Location: ./User/profile.php');
 } else {
     // nothing to do, sending back to profile screen
-    header('Location: profile.php');
+    header('Location: ./User/profile.php');
 }
 ?>
 </body>

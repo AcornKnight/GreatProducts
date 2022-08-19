@@ -13,7 +13,13 @@
     <div>
       <h1>Great Products</h1>
       <a href="index.php"><i class="fas fa-archive"></i>Main</a>
+      <?php
+        if(isset($_SESSION['isAdmin']) && $_SESSION['isAdmin'] == 1) {
+          echo '<a href="admin.php"><i class="fas fa-ad"></i>Admin</a>';
+        }
+       ?>
       <a href="profile.php"><i class="fas fa-user-circle"></i>Profile</a>
+      <a href="cart.php"><i class="fas fa-cart-plus"></i>Cart</a>
       <a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
     </div>
   </nav>
@@ -90,7 +96,7 @@ if(isset($_GET['action'])) {
 }
 
 // CATEGORY CRUD BELOW
-if(isset($_GET['action']) && $_GET['action'] == "categorydelete") {
+  if(isset($_GET['action'])) {
 // Incoming action from the admin page
     if ($_GET['action'] == "categorydelete") {
         global $db;
@@ -109,7 +115,7 @@ if(isset($_GET['action']) && $_GET['action'] == "categorydelete") {
             '<input type="submit" value="Update" class="update">'.
             '</form>';
         echo '<a href="admin.php" class="cancel">Cancel</a></div>';
-    } else if ($_GET['action'] == "create") {
+    } else if ($_GET['action'] == "categorycreate") {
         echo '<div class="address">';
         echo '<form action="crud.php" method="post" class="AddressForm">'.
             '<label>Category Name<label/>'.
@@ -131,7 +137,7 @@ if(isset($_GET['action']) && $_GET['action'] == "categorydelete") {
 } else if(isset($_POST['CatName'])) {
     // Incoming create action from our form
     global $db;
-    $db->exec('INSERT INTO Category (`CatID`,`CatName`) VALUES ("' .implode('","', $_POST).'")');
+    $db->exec('INSERT INTO Category (`CatName`) VALUES ("' .implode('","', $_POST).'")');
     header('Location: admin.php');
 }
 
@@ -161,7 +167,7 @@ if(isset($_GET['action'])) {
             '<input type="submit" value="Update" class="update">'.
             '</form>';
         echo '<a href="admin.php" class="cancel">Cancel</a></div>';
-    } else if ($_GET['action'] == "create") {
+    } else if ($_GET['action'] == "productcreate") {
         echo '<div class="address">';
         echo '<form action="crud.php" method="post" class="AddressForm">'.
             '<label>Name<label/>'.
@@ -189,7 +195,7 @@ if(isset($_GET['action'])) {
 } else if(isset($_POST['Name']) && isset($_POST['Cost']) && isset($_POST['Details']) && isset($_POST['Count'])) {
     // Incoming create action from our form
     global $db;
-    $db->exec('INSERT INTO Products (`ProductID`,`Name`, `Cost`, `Details`, `Count`) VALUES ("' .implode('","', $_POST).'")');
+    $db->exec('INSERT INTO Products (`Name`, `Cost`, `Details`, `Count`) VALUES ("' .implode('","', $_POST).'")');
     header('Location: admin.php');
 }
 

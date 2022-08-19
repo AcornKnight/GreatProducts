@@ -1,4 +1,4 @@
-<?php require_once('settings.php'); ?>
+<?php require_once('./settings.php'); ?>
     <!DOCTYPE html>
     <!-- Our cart page. -->
     <!-- Noah R Gestiehr. -->
@@ -16,14 +16,16 @@
         <?php
 
         if(isset($_SESSION['name'])) {
-            echo '<a href="index.php"><i class="fas fa-archive"></i>Main</a>';
+            echo '<a href="./index.php"><i class="fas fa-archive"></i>Main</a>';
             if(isset($_SESSION['isAdmin']) && $_SESSION['isAdmin'] == 1) {
-                echo '<a href="admin.php"><i class="fas fa-ad"></i>Admin</a>';
+              echo '<a href="./Admin/admin.php"><i class="fas fa-ad"></i>Admin</a>';
             }
-            echo '<a href="profile.php?UserID='.$_SESSION['id'].'">Profile</a><br/>';
-            echo '<a href="logout.php">Logout</a><br/>';
+            echo '<a href="./User/profile.php?UserID='.$_SESSION['id'].'">Profile</a><br/>';
+            echo '<a href="./Shop/cart.php"><i class="fas fa-cart-plus"></i>Cart</a>';
+            echo '<a href="./User/logout.php">Logout</a><br/>';
         } else {
-            echo '<a href="login.php">Login</a><br/>';
+            echo '<a href="./User/login.php">Login</a><br/>';
+            echo '<a href="./User/signup.php">Sign up</a><br/>';
         }
         echo '<hr />';
         ?>
@@ -44,7 +46,7 @@ if (isset($_POST) && isset($_POST["OrderID"])) {
         $product["count"] -= $qty["Count"];
         $db->exec('UPDATE products SET count = "'.$product["count"].'" WHERE ProductID = '.$product['ProductID']);
     }
-    header('Location: profile.php');
+    header('Location: ./User/profile.php');
 } else if(isset($_GET)) {
     // User wants to see their cart
     $cart = $db->query('SELECT OrderID from invoice WHERE UserID = ' . $_SESSION["id"] . ' AND Status = "cart"');
