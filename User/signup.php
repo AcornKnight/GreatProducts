@@ -12,7 +12,7 @@
 		<meta charset="utf-8">
 		<title>Sign-up</title>
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
-        <link href="../ style.css" rel="stylesheet" type="text/css">
+        <link href="../style.css" rel="stylesheet" type="text/css">
 	</head>
 	<body>
 		<div class="login">
@@ -30,7 +30,7 @@
 					<i class="fas fa-lock"></i>
 				</label>
 				<input type="password" name="userpass" placeholder="Password" id="userpass" required>
-				<input type="submit" value="Login">
+				<input type="submit" value="Register">
 			</form>
 		</div>
 	</body>
