@@ -1,14 +1,6 @@
 <?php
-require_once('./settings.php');
-
-
-
-
-$con = mysqli_connect($host, $username, $password, $dbname);
-if ( mysqli_connect_errno() ) {
- // If there is an error with the connection, stop the script and display the error.
- exit('Failed to connect to MySQL: ' . mysqli_connect_error());
-}
+$settings = require_once('../utils/settings.php');
+$utils = require_once('../utils/utils.php');
 
 // Now we check if the data from the login form was submitted, isset() will check if the data exists.
 
@@ -19,7 +11,7 @@ if ( !isset($_POST['username'], $_POST['userpass']) ) {
 }
 
 // Prepare our SQL, preparing the SQL statement will prevent SQL injection.
-if ($stmt = $con->prepare('SELECT UserID, Userpass, Admin FROM user WHERE username = ?')) {
+if ($stmt = $utils.con->prepare('SELECT UserID, Userpass, Admin FROM user WHERE username = ?')) {
 
 	$stmt->bind_param('s', $_POST['username']);
 
@@ -49,7 +41,7 @@ if ($stmt->num_rows > 0) {
 		echo 'PRE';
 		global $user;
 
-		$user = $db->query('SELECT * FROM user WHERE UserID = '. $UserID );
+		$user = $settings.db->query('SELECT * FROM user WHERE UserID = '. $UserID );
 
 		$GLOBALS['user'] = $user->fetch();
 		$GLOBALS['_SESSION']['isAdmin'] = $isAdmin;
