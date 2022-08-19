@@ -1,4 +1,5 @@
-<?php require_once('./settings.php'); ?>
+<?php require_once('./utils/settings.php'); ?>
+<?php require_once('./utils/utils.php'); ?>
 <!DOCTYPE html>
 <!-- Our main landing page. -->
 <!-- Noah R Gestiehr. -->

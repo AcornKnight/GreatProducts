@@ -13,5 +13,5 @@ unset($_SESSION["password"]);
 
 echo 'You have logged out.';
 // Redirect to the landing page:
-header('Location: ./index.php');
+header('Location: ../index.php');
 ?>

@@ -1,14 +1,8 @@
 <?php
-require_once('./settings.php');
-global $user;
+require_once('../utils/settings.php');
+require_once('../utils/utils.php');
 
 
-
-$con = mysqli_connect($host, $username, $password, $dbname);
-if ( mysqli_connect_errno() ) {
- // If there is an error with the connection, stop the script and display the error.
- exit('Failed to connect to MySQL: ' . mysqli_connect_error());
-}
 
 // Now we check if the data from the login form was submitted, isset() will check if the data exists.
 
@@ -53,7 +47,7 @@ if ($stmt->num_rows > 0) {
 		$GLOBALS['_SESSION']['isAdmin'] = $isAdmin;
 		echo 'POST';
 
-		header('Location: ./index.php');
+		header('Location: ../index.php');
 	} else {
 		// Incorrect password
 		echo 'Incorrect username and/or password!';
