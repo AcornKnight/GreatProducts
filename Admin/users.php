@@ -13,7 +13,7 @@ guard("admin");
 	<head>
 		<meta charset="utf-8">
 		<title>Administrator User Area</title>
-		<link href="style.css" rel="stylesheet" type="text/css">
+		<link href="../style.css" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
 	</head>
 	<body class="loggedin">
@@ -34,7 +34,7 @@ guard("admin");
 		<div class="content">
 			<h2>Administrator Page</h2>
       <div>
-          <h3>Users:</h3>
+          <h3><a href="admin.php">Administration</a> Users:</h3><hr />
           <a href="../Admin/userutil.php?action=usercreate">ADD NEW USER</a>
               <table>
                     <?php
