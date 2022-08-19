@@ -1,5 +1,8 @@
-<?php require_once('./utils/settings.php'); ?>
-<?php require_once('./utils/utils.php'); ?>
+<?php
+  require_once(__DIR__.'/../Utils/settings.php');
+  require_once(__DIR__.'/../Utils/utils.php');
+?>
+
 <!DOCTYPE html>
 <!-- Our main landing page. -->
 <!-- Noah R Gestiehr. -->
@@ -17,16 +20,16 @@
       <?php
 
       if(isset($_SESSION['name'])) {
-          echo '<a href="./index.php"><i class="fas fa-archive"></i>Main</a>';
+          echo '<a href="index.php"><i class="fas fa-archive"></i>Main</a>';
           if(isset($_SESSION['isAdmin']) && $_SESSION['isAdmin'] == 1) {
-            echo '<a href="./Admin/admin.php"><i class="fas fa-ad"></i>Admin</a>';
+            echo '<a href="Admin/admin.php"><i class="fas fa-ad"></i>Admin</a>';
           }
-          echo '<a href="./User/profile.php?UserID='.$_SESSION['id'].'">Profile</a><br/>';
-          echo '<a href="./Shop/cart.php"><i class="fas fa-cart-plus"></i>Cart</a>';
-          echo '<a href="./User/logout.php">Logout</a><br/>';
+          echo '<a href="User/profile.php?UserID='.$_SESSION['id'].'">Profile</a><br/>';
+          echo '<a href="Shop/cart.php"><i class="fas fa-cart-plus"></i>Cart</a>';
+          echo '<a href="User/logout.php">Logout</a><br/>';
       } else {
-          echo '<a href="./User/login.php">Login</a><br/>';
-          echo '<a href="./User/signup.php">Sign up</a><br/>';
+          echo '<a href="User/login.php">Login</a><br/>';
+          echo '<a href="User/signup.php">Sign up</a><br/>';
       }
       echo '<hr />';
       ?>
@@ -48,7 +51,7 @@ if (isset($_GET['CategoryID'])) {
     $cat = $db->query('SELECT CatName FROM category WHERE CatID = '.$_GET['CategoryID']);
     $cat = $cat->fetch();
     echo '<h3> Products in category: ' . $cat['CatName'] . '</h3>'
-    .'<a href="./index.php">Clear Category</a>'
+    .'<a href="index.php">Clear Category</a>'
     .'<hr />';
 }
 // READ ALL
@@ -79,7 +82,7 @@ while($row=$products->fetch()){
 //    print_r($row);
     echo '
         <tr>
-            <td><a href="./Shop/details.php?ProductID='.$row['ProductID'].'">'.$row['Name'].'</a></td>
+            <td><a href="Shop/details.php?ProductID='.$row['ProductID'].'">'.$row['Name'].'</a></td>
             <td>'.$row['Cost'].'</td>
         </tr>
     </a>';

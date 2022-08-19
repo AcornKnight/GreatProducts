@@ -1,5 +1,6 @@
 <?php
-require_once('./settings.php');
+  require_once(__DIR__.'/../Utils/settings.php');
+  require_once(__DIR__.'/../Utils/utils.php');
 
 
 

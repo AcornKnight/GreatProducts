@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__.'./settings.php';
+  require_once __DIR__.'./settings.php';
 
 // Doing the database connection in a single place
 $con = mysqli_connect($host, $username, $password, $dbname);

@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <title>Address</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
-    <link href="style.css" rel="stylesheet" type="text/css">
+    <link href="../style.css" rel="stylesheet" type="text/css">
 </head>
 <body class="loggedin">
   <nav class="navtop">
@@ -18,7 +18,8 @@
     </div>
   </nav>
 <?php
-require_once('./settings.php');
+require_once(__DIR__.'/../Utils/settings.php');
+require_once(__DIR__.'/../Utils/utils.php');
 function mapped_implode($glue, $array, $symbol = '=') {
     return implode($glue, array_map(
             function($k, $v) use($symbol) {

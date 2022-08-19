@@ -1,6 +1,6 @@
 <?php
-      require_once('../Utils/settings.php');
-      require_once('../Utils/utils.php');
+  require_once(__DIR__.'/../Utils/settings.php');
+  require_once(__DIR__.'/../Utils/utils.php');
 
   // If the user is not logged in redirect to the login page...
   if (!isset($_SESSION['loggedin'])) {
@@ -30,7 +30,7 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Administrator User Area</title>
-		<link href="style.css" rel="stylesheet" type="text/css">
+		<link href="../style.css" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
 	</head>
 	<body class="loggedin">
