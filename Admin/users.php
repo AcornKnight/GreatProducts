@@ -36,22 +36,23 @@ guard("admin");
       <div>
           <h3><a href="admin.php">Administration</a> Users:</h3><hr />
           <a href="../Admin/userutil.php?action=usercreate">ADD NEW USER</a>
-              <table>
-                    <?php
-                        while($users=$userlist->fetch()) {
-                            echo '<tr>';
-                                echo '<td>'.$users['UserID'].'</td>';
-                                echo '<td>'.$users['Admin'].'</td>';
-                                echo '<td>'.$users['Username'].'</td>';
-                                echo '<td>'.$users['Userpass'].'</td>';
-                                echo '<td>'.$users['Email'].'</td>';
-                                echo '<td><a href="../Admin/userutil.php?action=userupdate&UserID='.$users['UserID'].'">UPDATE</a></td>';
-                                echo '<td><a href="../Admin/userutil.php?action=userdelete&UserID='.$users['UserID'].'">DELETE</a></td>';
-                            echo '</tr>';
-                        }
-                    ?>
-                </table>
-          </div>
+          <table>
+              <tr><th>ID</th><th>Admin</th><th>Name</th><th>Password</th><th>Email</th><th>Update</th><th>Delete</th></th></tr>
+              <?php
+                while($users=$userlist->fetch()) {
+                    echo '<tr>';
+                        echo '<td>'.$users['UserID'].'</td>';
+                        echo '<td>'.$users['Admin'].'</td>';
+                        echo '<td>'.$users['Username'].'</td>';
+                        echo '<td>'.$users['Userpass'].'</td>';
+                        echo '<td>'.$users['Email'].'</td>';
+                        echo '<td><a href="../Admin/userutil.php?action=userupdate&UserID='.$users['UserID'].'">UPDATE</a></td>';
+                        echo '<td><a href="../Admin/userutil.php?action=userdelete&UserID='.$users['UserID'].'">DELETE</a></td>';
+                    echo '</tr>';
+                }
+              ?>
+          </table>
+      </div>
 
         </div>
       </body>
