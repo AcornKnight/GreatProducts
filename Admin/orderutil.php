@@ -54,7 +54,7 @@ if(isset($_GET['action'])) {
     if ($_GET['action'] == "orderdelete") {
         global $db;
         $db->exec('DELETE FROM invoice where OrderID = ' . $_GET['OrderID']);
-        header('Location: ./admin.php');
+        header('Location: ../Admin/orders.php');
     } else if ($_GET['action'] == "orderupdate") {
         global $db;
         $order = $db->query('SELECT * FROM invoice WHERE OrderID = '.$_GET['OrderID']);
@@ -118,10 +118,10 @@ if(isset($_GET['action'])) {
         }
         echo '<hr /><input type="submit" value="Update" class="update">'.
             '</form>';
-        echo '<a href="./admin.php" class="cancel">Cancel</a></div>';
+        echo '<a href="../Admin/orders.php" class="cancel">Cancel</a></div>';
     }  else if (!isset($_GET['action'])) {
         // unknown GET action
-        header('Location: ./admin.php');
+        header('Location: ../Admin/orders.php');
     }
 } else if(isset($_POST['OrderID']) && isset($_POST['Status']) && isset($_POST['UserID']) && isset($_POST['AddressID']) ||
     isset($_POST['OrderID']) && isset($_POST['Status'])) {
@@ -130,7 +130,7 @@ if(isset($_GET['action'])) {
     // the quotes are correct in the UPDATE SQL below. it wants:  ... SET key1="value1", key2="value2" WHERE ...
     // it throws a hissy (syntax error) when keys are quoted. It pukes on spaces in values when values are not quoted
     $db->exec('UPDATE invoice SET '. mapped_implode('",', $_POST, '="').'" WHERE OrderID = '.$_POST['OrderID']);
-    header('Location: ./admin.php');
+    header('Location: ../Admin/orders.php');
 }
 ?>
 </body>

@@ -10,6 +10,14 @@
     <link href="../style.css" rel="stylesheet" type="text/css">
 	</head>
 	<body>
+		<nav class="navtop">
+	    <div>
+	      <h1>Great Products</h1>
+	      <a href="../index.php"><i class="fas fa-archive"></i>Main</a>
+	      <a href="./profile.php"><i class="fas fa-user-circle"></i>Profile</a>
+	      <a href="./logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
+	    </div>
+	  </nav>
 		<div class="login">
 			<h1>Login</h1>
 			<form action="authenticate.php" method="post">

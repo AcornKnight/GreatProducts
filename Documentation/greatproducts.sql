@@ -33,8 +33,8 @@ CREATE TABLE `address` (
   `Street` varchar(255) NOT NULL,
   `City` varchar(255) NOT NULL,
   `Zip` int(32) NOT NULL,
-  `State` varchar(12) NOT NULL,
-  `Country` varchar(12) NOT NULL
+  `State` varchar(32) NOT NULL,
+  `Country` varchar(32) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
